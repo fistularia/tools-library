@@ -1,0 +1,58 @@
+@use "../styles/variables" as *;
+
+.article-card {
+  background-color: $color-surface;
+  border-radius: $radius-md;
+  box-shadow: $shadow-sm;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+
+  &__link {
+    display: block;
+    color: inherit;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__content {
+    padding: $spacing-lg;
+  }
+
+  &__category {
+    display: inline-block;
+    font-size: $font-size-sm;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $radius-sm;
+    color: white;
+    margin-bottom: $spacing-sm;
+
+    &--spreadsheet {
+      background-color: $color-spreadsheet;
+    }
+
+    &--docs {
+      background-color: $color-docs;
+    }
+
+    &--slides {
+      background-color: $color-slides;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__description {
+    color: $color-text-secondary;
+    font-size: $font-size-sm;
+  }
+}

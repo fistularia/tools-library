@@ -1,0 +1,17 @@
+@use "../styles/variables" as *;
+
+.download-button {
+  display: inline-block;
+  background-color: $color-primary;
+  color: white;
+  padding: $spacing-md $spacing-xl;
+  border-radius: $radius-md;
+  font-size: $font-size-base;
+  font-weight: bold;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: darken($color-primary, 10%);
+    text-decoration: none;
+  }
+}

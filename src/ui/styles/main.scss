@@ -1,0 +1,13 @@
+@use "variables" as *;
+@use "reset";
+
+// Layout
+@use "../pages/Layout.scss";
+
+// Pages
+@use "../pages/top/top.scss";
+@use "../pages/articles/article.scss";
+
+// Components
+@use "../components/DownloadButton.scss";
+@use "../components/ArticleCard.scss";
