@@ -5,6 +5,7 @@ interface ArticleCardProps {
   article: Article;
 }
 
+
 export function ArticleCard({ article }: ArticleCardProps) {
   const { slug, frontmatter } = article;
   const { title, description, category } = frontmatter;
