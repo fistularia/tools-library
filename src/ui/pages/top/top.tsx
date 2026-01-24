@@ -3,12 +3,13 @@ import { ArticleCard } from "../../components/ArticleCard.tsx";
 import type { Article } from "../../../domain/types.ts";
 
 interface TopPageProps {
+  baseUrl: string;
   articles: Article[];
 }
 
-export function TopPage({ articles }: TopPageProps) {
+export function TopPage({ baseUrl, articles }: TopPageProps) {
   return (
-    <Layout title="ホーム">
+    <Layout title="ホーム" baseUrl={baseUrl}>
       <div class="top-page">
         <section class="hero">
           <h1 class="hero__title">業務に役立つファイル集</h1>
@@ -21,7 +22,7 @@ export function TopPage({ articles }: TopPageProps) {
           {/* <h2 class="articles__heading">テンプレート一覧</h2> */}
           <div class="articles__grid">
             {articles.map((article) => (
-              <ArticleCard key={article.slug} article={article} />
+              <ArticleCard key={article.slug} baseUrl={baseUrl} article={article} />
             ))}
           </div>
         </section>

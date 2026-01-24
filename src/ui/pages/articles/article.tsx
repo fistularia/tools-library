@@ -4,15 +4,16 @@ import type { Article } from "../../../domain/types.ts";
 import { categoryLabels } from "../../../domain/types.ts";
 
 interface ArticlePageProps {
+  baseUrl: string;
   article: Article;
 }
 
-export function ArticlePage({ article }: ArticlePageProps) {
+export function ArticlePage({ baseUrl, article }: ArticlePageProps) {
   const { frontmatter, content } = article;
   const { title, description, category, downloadUrl, date, tags } = frontmatter;
 
   return (
-    <Layout title={title}>
+    <Layout title={title} baseUrl={baseUrl}>
       <article class="article-page">
         <header class="article-page__header">
           <span class={`article-page__category article-page__category--${category}`}>

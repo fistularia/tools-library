@@ -32,10 +32,14 @@ async function buildStyles() {
 async function buildPages() {
   console.log("Building pages...");
 
+  // GitHub Actions上ならリポジトリ名、ローカルならルート(/)
+  const isCI = Deno.env.get("GITHUB_ACTIONS") === "true";
+  const baseUrl = isCI ? "/tools-library/" : "/";
+
   const articles = await getArticles();
 
   // Build top page
-  const topPageHtml = "<!DOCTYPE html>" + render(TopPage({ articles }));
+  const topPageHtml = "<!DOCTYPE html>" + render(TopPage({ baseUrl, articles }));
   await Deno.writeTextFile(`${DIST_DIR}/index.html`, topPageHtml);
   console.log("  Created: dist/index.html");
 
@@ -44,7 +48,7 @@ async function buildPages() {
 
   for (const article of articles) {
     const articleHtml =
-      "<!DOCTYPE html>" + render(ArticlePage({ article }));
+      "<!DOCTYPE html>" + render(ArticlePage({ baseUrl, article }));
     await Deno.writeTextFile(
       `${DIST_DIR}/articles/${article.slug}.html`,
       articleHtml
