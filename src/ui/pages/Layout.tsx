@@ -12,7 +12,7 @@ export function Layout({ title, children }: LayoutProps) {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{title} | 業務に役立つファイル集</title>
-        <link rel="stylesheet" href="/styles/main.css" />
+        <link rel="stylesheet" href="./styles/main.css" />
       </head>
       <body>
         <Header />
