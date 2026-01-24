@@ -30,7 +30,7 @@ function Header() {
         <a href="/" class="header__logo">
         </a>
         <nav class="header__nav">
-          <a href="/">Home</a>
+          <a href="./">Home</a>
         </nav>
       </div>
     </header>

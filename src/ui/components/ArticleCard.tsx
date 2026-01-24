@@ -12,7 +12,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
 
   return (
     <article class="article-card">
-      <a href={`/articles/${slug}.html`} class="article-card__link">
+      <a href={`./articles/${slug}.html`} class="article-card__link">
         <div class="article-card__content">
           <span class={`article-card__category article-card__category--${category}`}>
             {categoryLabels[category]}
