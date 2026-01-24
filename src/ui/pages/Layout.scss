@@ -20,7 +20,7 @@
   &__logo {
     font-size: $font-size-lg;
     font-weight: bold;
-    color:  #195885;
+    color: $color-main;
 
     &:hover {
       text-decoration: none;
@@ -35,7 +35,7 @@
       color: $color-text-secondary;
 
       &:hover {
-        color: $color-primary;
+        opacity: 0.85;
         text-decoration: none;
       }
     }

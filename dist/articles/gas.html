@@ -1,0 +1,20 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>gas | tools library</title><link rel="stylesheet" href="/styles/main.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"/></head><body><header class="header"><div class="header__inner"><a href="/" class="header__logo"></a><nav class="header__nav"><a href="/">Home</a></nav></div></header><main class="main"><article class="article-page"><header class="article-page__header"><span class="article-page__category article-page__category--gas">GAS</span><h1 class="article-page__title">gas</h1><img src="/img/gas.png" alt="gas" class="article-page__thumbnail"/><p class="article-page__description">テストgas</p><div class="article-page__meta"><time class="article-page__date">2026-01-23</time><div class="article-page__tags"><span class="article-page__tag">勤怠</span><span class="article-page__tag">管理</span><span class="article-page__tag">時間計算</span></div></div></header><div class="article-page__content"><h2>概要</h2>
+<p>テストファイルです</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getFileList</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-comment">// 1. フォルダIDを指定（フォルダのURL末尾にある英数文字列）</span>
+  <span class="hljs-keyword">const</span> folderId = <span class="hljs-string">&#x27;YOUR_FOLDER_ID_HERE&#x27;</span>; 
+  <span class="hljs-keyword">const</span> folder = <span class="hljs-title class_">DriveApp</span>.<span class="hljs-title function_">getFolderById</span>(folderId);
+  
+  <span class="hljs-comment">// 2. フォルダ内のファイルを取得（イテレータ）</span>
+  <span class="hljs-keyword">const</span> files = folder.<span class="hljs-title function_">getFiles</span>();
+  
+  <span class="hljs-comment">// 3. ループで1つずつ取り出す</span>
+  <span class="hljs-keyword">while</span> (files.<span class="hljs-title function_">hasNext</span>()) {
+    <span class="hljs-keyword">const</span> file = files.<span class="hljs-title function_">next</span>();
+    <span class="hljs-keyword">const</span> name = file.<span class="hljs-title function_">getName</span>();
+    <span class="hljs-keyword">const</span> url = file.<span class="hljs-title function_">getUrl</span>();
+    
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;ファイル名: &#x27;</span> + name + <span class="hljs-string">&#x27; / URL: &#x27;</span> + url);
+  }
+}
+</code></pre></div><div class="article-page__footer"><a href="/" class="article-page__back">← 一覧に戻る</a></div></article></main><footer class="footer"><div class="footer__inner"><p class="footer__copyright">© 2026 tools library</p></div></footer></body></html>

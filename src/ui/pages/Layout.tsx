@@ -14,6 +14,10 @@ export function Layout({ title, baseUrl, children }: LayoutProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{title} | tools library</title>
         <link rel="stylesheet" href={`${baseUrl}styles/main.css`} />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+        />
       </head>
       <body>
         <Header baseUrl={baseUrl} />

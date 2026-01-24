@@ -1,7 +1,7 @@
 export interface ArticleFrontmatter {
   title: string;
   description: string;
-  category: "spreadsheet" | "docs" | "slides";
+  category: "spreadsheet" | "docs" | "slides" | "gas";
   downloadUrl: string;
   thumbnail: string;
   date: string;
@@ -18,4 +18,5 @@ export const categoryLabels: Record<ArticleFrontmatter["category"], string> = {
   spreadsheet: "スプレッドシート",
   docs: "ドキュメント",
   slides: "スライド",
+  gas: "GAS",
 };

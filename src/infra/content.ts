@@ -1,6 +1,18 @@
 import matter from "gray-matter";
-import { marked } from "marked";
+import { Marked } from "marked";
+import { markedHighlight } from "marked-highlight";
+import hljs from "highlight.js";
 import type { Article, ArticleFrontmatter } from "../domain/types.ts";
+
+const marked = new Marked(
+  markedHighlight({
+    langPrefix: "hljs language-",
+    highlight(code, lang) {
+      const language = hljs.getLanguage(lang) ? lang : "plaintext";
+      return hljs.highlight(code, { language }).value;
+    },
+  })
+);
 
 const CONTENT_DIR = "./content/articles";
 
@@ -20,7 +32,7 @@ export async function getArticles(): Promise<Article[]> {
   return articles.sort(
     (a, b) =>
       new Date(b.frontmatter.date).getTime() -
-      new Date(a.frontmatter.date).getTime()
+      new Date(a.frontmatter.date).getTime(),
   );
 }
 
@@ -30,7 +42,7 @@ export async function getArticle(slug: string): Promise<Article | null> {
   try {
     const fileContent = await Deno.readTextFile(filePath);
     const { data, content } = matter(fileContent);
-    const htmlContent = await marked(content);
+    const htmlContent = await marked.parse(content);
 
     return {
       slug,
@@ -43,8 +55,10 @@ export async function getArticle(slug: string): Promise<Article | null> {
 }
 
 export async function getArticlesByCategory(
-  category: ArticleFrontmatter["category"]
+  category: ArticleFrontmatter["category"],
 ): Promise<Article[]> {
   const articles = await getArticles();
-  return articles.filter((article) => article.frontmatter.category === category);
+  return articles.filter((article) =>
+    article.frontmatter.category === category
+  );
 }

@@ -1,11 +1,13 @@
 @use "../../styles/variables" as *;
 
 .hero {
-  text-align: center;
+  text-align: left;
   padding: $spacing-lg 0;
 
   &__title {
-    font-size: $font-size-lg;
+    font-size: $font-size-sm;
+    color: $color-main;
+    font-weight: normal;
     margin-bottom: $spacing-md;
   }
 

@@ -2,6 +2,8 @@
   "version": "5",
   "specifiers": {
     "npm:gray-matter@^4.0.3": "4.0.3",
+    "npm:highlight.js@^11.9.0": "11.11.1",
+    "npm:marked-highlight@^2.2.1": "2.2.3_marked@11.2.0",
     "npm:marked@^11.1.1": "11.2.0",
     "npm:preact-render-to-string@^6.3.1": "6.6.5_preact@10.28.2",
     "npm:preact@^10.19.3": "10.28.2",
@@ -81,6 +83,9 @@
         "strip-bom-string"
       ]
     },
+    "highlight.js@11.11.1": {
+      "integrity": "sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w=="
+    },
     "immutable@4.3.7": {
       "integrity": "sha512-1hqclzwYwjRDFLjcFxOM5AYkkG0rpFPpr1RLPMEuGczoS7YA8gLhy8SWXYRAA/XwfEHpfo3cw5JGioS32fnMRw=="
     },
@@ -115,6 +120,12 @@
     },
     "kind-of@6.0.3": {
       "integrity": "sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw=="
+    },
+    "marked-highlight@2.2.3_marked@11.2.0": {
+      "integrity": "sha512-FCfZRxW/msZAiasCML4isYpxyQWKEEx44vOgdn5Kloae+Qc3q4XR7WjpKKf8oMLk7JP9ZCRd2vhtclJFdwxlWQ==",
+      "dependencies": [
+        "marked"
+      ]
     },
     "marked@11.2.0": {
       "integrity": "sha512-HR0m3bvu0jAPYiIvLUUQtdg1g6D247//lvcekpHO1WMvbwDlwSkZAX9Lw4F4YHE1T0HaaNve0tuAWuV1UJ6vtw==",
@@ -178,6 +189,8 @@
       "jsr:@std/fs@0.229",
       "jsr:@std/path@0.225",
       "npm:gray-matter@^4.0.3",
+      "npm:highlight.js@^11.9.0",
+      "npm:marked-highlight@^2.2.1",
       "npm:marked@^11.1.1",
       "npm:preact-render-to-string@^6.3.1",
       "npm:preact@^10.19.3"

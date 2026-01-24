@@ -8,6 +8,8 @@
     "preact-render-to-string": "npm:preact-render-to-string@^6.3.1",
     "gray-matter": "npm:gray-matter@^4.0.3",
     "marked": "npm:marked@^11.1.1",
+    "marked-highlight": "npm:marked-highlight@^2.2.1",
+    "highlight.js": "npm:highlight.js@^11.9.0",
     "@std/fs": "jsr:@std/fs@^0.229.0",
     "@std/path": "jsr:@std/path@^0.225.0"
   },

@@ -16,13 +16,17 @@ export function ArticlePage({ baseUrl, article }: ArticlePageProps) {
     <Layout title={title} baseUrl={baseUrl}>
       <article class="article-page">
         <header class="article-page__header">
-          <span class={`article-page__category article-page__category--${category}`}>
+          <span
+            class={`article-page__category article-page__category--${category}`}
+          >
             {categoryLabels[category]}
           </span>
           <h1 class="article-page__title">{title}</h1>
-          <img src={`${baseUrl}img/${slug}.png`}
-               alt={title} 
-               class="article-page__thumbnail" />
+          <img
+            src={`${baseUrl}img/${slug}.png`}
+            alt={title}
+            class="article-page__thumbnail"
+          />
           <p class="article-page__description">{description}</p>
           <div class="article-page__meta">
             <time class="article-page__date">{date}</time>
@@ -34,12 +38,13 @@ export function ArticlePage({ baseUrl, article }: ArticlePageProps) {
               ))}
             </div>
           </div>
-          
         </header>
 
-        <div class="article-page__download">
-          <DownloadButton url={downloadUrl} category={category} />
-        </div>
+        {downloadUrl !== null && (
+          <div class="article-page__download">
+            <DownloadButton url={downloadUrl} category={category} />
+          </div>
+        )}
 
         <div
           class="article-page__content"

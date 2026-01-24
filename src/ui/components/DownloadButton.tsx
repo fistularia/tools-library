@@ -7,7 +7,12 @@ export function DownloadButton({ url, category }: DownloadButtonProps) {
   const buttonText = getButtonText(category);
 
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer" class="download-button">
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="download-button"
+    >
       {buttonText}
     </a>
   );

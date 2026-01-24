@@ -39,7 +39,8 @@ async function buildPages() {
   const articles = await getArticles();
 
   // Build top page
-  const topPageHtml = "<!DOCTYPE html>" + render(TopPage({ baseUrl, articles }));
+  const topPageHtml = "<!DOCTYPE html>" +
+    render(TopPage({ baseUrl, articles }));
   await Deno.writeTextFile(`${DIST_DIR}/index.html`, topPageHtml);
   console.log("  Created: dist/index.html");
 
@@ -47,11 +48,11 @@ async function buildPages() {
   await ensureDir(`${DIST_DIR}/articles`);
 
   for (const article of articles) {
-    const articleHtml =
-      "<!DOCTYPE html>" + render(ArticlePage({ baseUrl, article }));
+    const articleHtml = "<!DOCTYPE html>" +
+      render(ArticlePage({ baseUrl, article }));
     await Deno.writeTextFile(
       `${DIST_DIR}/articles/${article.slug}.html`,
-      articleHtml
+      articleHtml,
     );
     console.log(`  Created: dist/articles/${article.slug}.html`);
   }

@@ -7,8 +7,11 @@ $color-text: #202124;
 $color-text-secondary: #5f6368;
 $color-border: #dadce0;
 
+$color-main: #60738c;
+
 // Category colors
-$color-spreadsheet: #6bbc95;
+$color-spreadsheet: #84c2a4;
+$color-gas: #6c95c4;
 $color-docs: #4285f4;
 $color-slides: #f4b400;
 
@@ -21,7 +24,13 @@ $spacing-xl: 2rem;
 $spacing-xxl: 3rem;
 
 // Typography
-$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", sans-serif;
+$font-family:
+  -apple-system,
+  BlinkMacSystemFont,
+  "Segoe UI",
+  Roboto,
+  "Hiragino Sans",
+  sans-serif,;
 $font-size-xs: 0.75rem;
 $font-size-sm: 0.875rem;
 $font-size-base: 1rem;

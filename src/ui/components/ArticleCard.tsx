@@ -6,7 +6,6 @@ interface ArticleCardProps {
   article: Article;
 }
 
-
 export function ArticleCard({ baseUrl, article }: ArticleCardProps) {
   const { slug, frontmatter } = article;
   const { title, description, category } = frontmatter;
@@ -15,11 +14,20 @@ export function ArticleCard({ baseUrl, article }: ArticleCardProps) {
     <article class="article-card">
       <a href={`${baseUrl}articles/${slug}.html`} class="article-card__link">
         <div class="article-card__content">
-          <span class={`article-card__category article-card__category--${category}`}>
+          <span
+            class={`article-card__category article-card__category--${category}`}
+          >
             {categoryLabels[category]}
           </span>
-          <h2 class="article-card__title">{title}</h2>
-          <p class="article-card__description">{description}</p>
+          <img
+            src={`${baseUrl}img/${slug}.png`}
+            alt={title}
+            class="article-card__thumbnail"
+          />
+          <div class="article-card__text-content">
+            <h2 class="article-card__title">{title}</h2>
+            <p class="article-card__description">{description}</p>
+          </div>
         </div>
       </a>
     </article>
