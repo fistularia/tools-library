@@ -9,10 +9,10 @@ interface TopPageProps {
 
 export function TopPage({ baseUrl, articles }: TopPageProps) {
   return (
-    <Layout title="ホーム" baseUrl={baseUrl}>
+    <Layout title="Home" baseUrl={baseUrl}>
       <div class="top-page">
         <section class="hero">
-          <h1 class="hero__title">業務に役立つファイル集</h1>
+          <h1 class="hero__title">業務効率化に役立つファイル集</h1>
           {/* <p class="hero__description">
             Googleスプレッドシートなど、効率的に業務を行うのに役立つツールを紹介します
           </p> */}

@@ -9,7 +9,7 @@ interface ArticlePageProps {
 }
 
 export function ArticlePage({ baseUrl, article }: ArticlePageProps) {
-  const { frontmatter, content } = article;
+  const { slug, frontmatter, content } = article;
   const { title, description, category, downloadUrl, date, tags } = frontmatter;
 
   return (
@@ -20,6 +20,9 @@ export function ArticlePage({ baseUrl, article }: ArticlePageProps) {
             {categoryLabels[category]}
           </span>
           <h1 class="article-page__title">{title}</h1>
+          <img src={`${baseUrl}img/${slug}.png`}
+               alt={title} 
+               class="article-page__thumbnail" />
           <p class="article-page__description">{description}</p>
           <div class="article-page__meta">
             <time class="article-page__date">{date}</time>
@@ -31,6 +34,7 @@ export function ArticlePage({ baseUrl, article }: ArticlePageProps) {
               ))}
             </div>
           </div>
+          
         </header>
 
         <div class="article-page__download">
@@ -43,7 +47,7 @@ export function ArticlePage({ baseUrl, article }: ArticlePageProps) {
         />
 
         <div class="article-page__footer">
-          <a href="/" class="article-page__back">
+          <a href={`${baseUrl}`} class="article-page__back">
             ← 一覧に戻る
           </a>
         </div>

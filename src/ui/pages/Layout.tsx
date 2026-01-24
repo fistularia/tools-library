@@ -12,7 +12,7 @@ export function Layout({ title, baseUrl, children }: LayoutProps) {
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{title} | 業務に役立つファイル集</title>
+        <title>{title} | tools library</title>
         <link rel="stylesheet" href={`${baseUrl}styles/main.css`} />
       </head>
       <body>
@@ -42,7 +42,7 @@ function Footer() {
   return (
     <footer class="footer">
       <div class="footer__inner">
-        <p class="footer__copyright">&copy; 2026 Tanaka's Tool Library</p>
+        <p class="footer__copyright">&copy; 2026 tools library</p>
       </div>
     </footer>
   );
