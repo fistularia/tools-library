@@ -5,9 +5,9 @@
   padding: $spacing-lg 0;
 
   &__title {
-    font-size: $font-size-sm;
+    font-size: $font-size-base;
     color: $color-main;
-    font-weight: normal;
+    font-weight: bold;
     margin-bottom: $spacing-md;
   }
 
@@ -18,10 +18,13 @@
 }
 
 .articles {
+  margin: 0 0 $spacing-xl;
+
   &__heading {
-    font-size: $font-size-lg;
+    font-size: $font-size-sm;
     font-weight: normal;
-    margin-bottom: $spacing-xl;
+    color: $color-text-secondary;
+    margin-bottom: $spacing-md;
   }
 
   &__grid {

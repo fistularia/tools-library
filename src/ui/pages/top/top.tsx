@@ -8,6 +8,8 @@ interface TopPageProps {
 }
 
 export function TopPage({ baseUrl, articles }: TopPageProps) {
+  const sheetsArticles = articles.filter(article => { return article.frontmatter.category === "spreadsheet"});
+  const gasArticles = articles.filter(article => { return article.frontmatter.category === "gas"});
   return (
     <Layout title="Home" baseUrl={baseUrl}>
       <div class="top-page">
@@ -21,9 +23,22 @@ export function TopPage({ baseUrl, articles }: TopPageProps) {
         </section>
 
         <section class="articles">
-          {/* <h2 class="articles__heading">テンプレート一覧</h2> */}
+          <h2 class="articles__heading">スプレッドシート</h2>
           <div class="articles__grid">
-            {articles.map((article) => (
+            {sheetsArticles.map((article) => (
+              <ArticleCard
+                key={article.slug}
+                baseUrl={baseUrl}
+                article={article}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section class="articles">
+          <h2 class="articles__heading">GAS</h2>
+          <div class="articles__grid">
+            {gasArticles.map((article) => (
               <ArticleCard
                 key={article.slug}
                 baseUrl={baseUrl}

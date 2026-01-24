@@ -118,6 +118,11 @@
       margin-bottom: $spacing-sm;
     }
 
+    img {
+      border-radius: $radius-md;
+      margin: $spacing-lg 0;
+    }
+
     pre {
       background-color: #f6f8fa;
       border-radius: $radius-md;
@@ -149,9 +154,11 @@
 
   &__back {
     color: $color-text-secondary;
+    transition: all 0.15s;
 
     &:hover {
-      color: $color-primary;
+      color: $color-main;
+      text-decoration: none;
     }
   }
 }

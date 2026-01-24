@@ -32,3 +32,6 @@ function getFileList() {
   }
 }
 ```
+
+
+![GASの使用イメージ](../img/gas.gif)
