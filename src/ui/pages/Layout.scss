@@ -1,8 +1,7 @@
 @use "../styles/variables" as *;
 
 .header {
-  background-color: $color-surface;
-  border-bottom: 1px solid $color-border;
+  background-color: $color-background;
   height: $header-height;
   position: sticky;
   top: 0;
@@ -21,7 +20,7 @@
   &__logo {
     font-size: $font-size-lg;
     font-weight: bold;
-    color: $color-text;
+    color:  #195885;
 
     &:hover {
       text-decoration: none;
@@ -51,8 +50,7 @@
 }
 
 .footer {
-  background-color: $color-surface;
-  border-top: 1px solid $color-border;
+  background-color: $color-background;
   padding: $spacing-xl 0;
   text-align: center;
 
@@ -62,5 +60,10 @@
     padding: 0 $spacing-lg;
     color: $color-text-secondary;
     font-size: $font-size-sm;
+  }
+
+  &__copyright {
+    font-size: $font-size-xs;
+    color: #d6d6d6;
   }
 }

@@ -28,10 +28,9 @@ function Header() {
     <header class="header">
       <div class="header__inner">
         <a href="/" class="header__logo">
-          業務に役立つファイル集
         </a>
         <nav class="header__nav">
-          <a href="/">ホーム</a>
+          <a href="/">Home</a>
         </nav>
       </div>
     </header>
@@ -42,7 +41,7 @@ function Footer() {
   return (
     <footer class="footer">
       <div class="footer__inner">
-        <p>&copy; 2024 業務に役立つファイル集</p>
+        <p class="footer__copyright">&copy; 2026 Tanaka's Tool Library</p>
       </div>
     </footer>
   );

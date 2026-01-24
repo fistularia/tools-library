@@ -2,22 +2,23 @@
 
 .hero {
   text-align: center;
-  padding: $spacing-xxl 0;
+  padding: $spacing-lg 0;
 
   &__title {
-    font-size: $font-size-xxl;
+    font-size: $font-size-xl;
     margin-bottom: $spacing-md;
   }
 
   &__description {
-    font-size: $font-size-lg;
+    font-size: $font-size-base;
     color: $color-text-secondary;
   }
 }
 
 .articles {
   &__heading {
-    font-size: $font-size-xl;
+    font-size: $font-size-lg;
+    font-weight: normal;
     margin-bottom: $spacing-xl;
   }
 
