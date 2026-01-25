@@ -18,7 +18,7 @@ export function DownloadButton({ url, category }: DownloadButtonProps) {
   );
 }
 
-function getButtonText(category: string): string {
+export function getButtonText(category: string): string {
   switch (category) {
     case "spreadsheet":
       return "スプレッドシートをコピー";

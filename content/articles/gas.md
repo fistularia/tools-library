@@ -3,7 +3,6 @@ title: "gas"
 description: "テストgas"
 category: "gas"
 downloadUrl:
-thumbnail: "/images/test.png"
 date: "2026-01-23"
 tags: ["勤怠", "管理", "時間計算"]
 ---

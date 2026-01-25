@@ -3,7 +3,6 @@ title: "リンク集"
 description: "よく使うサイトやシートなどを一覧にします"
 category: "spreadsheet"
 downloadUrl: "https://docs.google.com/spreadsheets/d/example1/copy"
-thumbnail: "/images/attendance.png"
 date: "2026-01-23"
 tags: ["勤怠", "管理", "時間計算"]
 ---

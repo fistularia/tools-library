@@ -1,15 +1,9 @@
-name: Deploy to GitHub Pages
+name: Deploy to Sakura Internet
 
 on:
   # mainブランチにプッシュされた時に実行
   push:
     branches: ["main"]
-
-# GitHub Pagesへのデプロイに必要な権限設定
-permissions:
-  contents: read
-  pages: write
-  id-token: write
 
 jobs:
   build-and-deploy:
@@ -29,13 +23,18 @@ jobs:
       - name: Build
         run: deno run -A src/infra/build.ts
 
-      # 4. GitHub Pages用に成果物をアップロード
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist # ここで作成されたdistフォルダを指定
+      # 4. SSH秘密鍵をセットアップ
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SAKURA_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p ${{ secrets.SAKURA_PORT }} ${{ secrets.SAKURA_HOST }} >> ~/.ssh/known_hosts
 
-      # 5. 実際にデプロイを実行
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      # 5. rsyncでさくらインターネットにデプロイ
+      - name: Deploy to Sakura Internet
+        run: |
+          rsync -avz --delete \
+            -e "ssh -p ${{ secrets.SAKURA_PORT }}" \
+            ./dist/ \
+            ${{ secrets.SAKURA_USER }}@${{ secrets.SAKURA_HOST }}:${{ secrets.SAKURA_DEPLOY_PATH }}

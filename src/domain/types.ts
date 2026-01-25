@@ -3,7 +3,6 @@ export interface ArticleFrontmatter {
   description: string;
   category: "spreadsheet" | "docs" | "slides" | "gas" | "others";
   downloadUrl: string;
-  thumbnail: string;
   date: string;
   tags: string[];
 }
