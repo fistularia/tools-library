@@ -34,7 +34,7 @@ async function buildPages() {
 
   // GitHub Actions上ならリポジトリ名、ローカルならルート(/)
   const isCI = Deno.env.get("GITHUB_ACTIONS") === "true";
-  const baseUrl = isCI ? "/tools-library/" : "/";
+  const baseUrl = isCI ? "https://tools-library.mints.ne.jp/" : "/";
 
   const articles = await getArticles();
 
