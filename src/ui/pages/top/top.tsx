@@ -48,21 +48,21 @@ export function TopPage({ baseUrl, articles }: TopPageProps) {
         </section>
 
         <div class="tabs">
-          <button
-            class="tabs__button tabs__button--active"
-            data-category="all"
-          >
-            すべて
-          </button>
-          {tabCategories.map((category) => (
+          {tabCategories.map((category, index) => (
             <button
               key={category}
-              class={`tabs__button tabs__button--${category}`}
+              class={`tabs__button tabs__button--${category}${index === 0 ? " tabs__button--active" : ""}`}
               data-category={category}
             >
               {categoryLabels[category]}
             </button>
           ))}
+          <button
+            class="tabs__button"
+            data-category="all"
+          >
+            すべて
+          </button>
         </div>
 
         <div class="articles-container">
@@ -72,7 +72,7 @@ export function TopPage({ baseUrl, articles }: TopPageProps) {
             return (
               <section
                 key={category}
-                class="tab-panel"
+                class={`tab-panel${category !== "spreadsheet" ? " tab-panel--hidden" : ""}`}
                 data-category={category}
               >
                 <h2 class="articles__heading">{categoryLabels[category]}</h2>
