@@ -17,6 +17,72 @@
   }
 }
 
+.tabs {
+  display: flex;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-lg;
+  border-bottom: 1px solid $color-border;
+  padding-bottom: $spacing-sm;
+
+  &__button {
+    padding: $spacing-sm $spacing-md;
+    border: none;
+    background: none;
+    font-size: $font-size-sm;
+    color: $color-text-secondary;
+    cursor: pointer;
+    border-radius: $radius-sm $radius-sm 0 0;
+    transition: background-color 0.2s, color 0.2s;
+    position: relative;
+
+    &:hover {
+      background-color: rgba($color-primary, 0.1);
+      color: $color-text;
+    }
+
+    &--active {
+      color: $color-primary;
+      font-weight: bold;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -#{$spacing-sm};
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: $color-primary;
+      }
+    }
+
+    &--spreadsheet.tabs__button--active {
+      color: $color-spreadsheet;
+      &::after {
+        background-color: $color-spreadsheet;
+      }
+    }
+
+    &--gas.tabs__button--active {
+      color: $color-gas;
+      &::after {
+        background-color: $color-gas;
+      }
+    }
+  }
+}
+
+.articles-container {
+  margin-top: $spacing-md;
+}
+
+.tab-panel {
+  margin-bottom: $spacing-xl;
+
+  &--hidden {
+    display: none;
+  }
+}
+
 .articles {
   margin: 0 0 $spacing-xl;
 
