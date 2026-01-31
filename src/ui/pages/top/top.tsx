@@ -20,7 +20,7 @@ export function TopPage({ baseUrl, articles }: TopPageProps) {
     <Layout title="Home" baseUrl={baseUrl}>
       <div class="top-page">
         <section class="hero">
-          <h1 class="hero__title">📒 業務に役立つシートや関数です。</h1>
+          <h1 class="hero__title">📒 業務に役立つスプレッドシートなどです。</h1>
         </section>
 
         <div class="tabs">
