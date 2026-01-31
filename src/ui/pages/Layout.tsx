@@ -20,7 +20,7 @@ export function Layout({ title, baseUrl, children }: LayoutProps) {
         />
       </head>
       <body>
-        <Header baseUrl={baseUrl} />
+      {/*<Header baseUrl={baseUrl} />*/}
         <main class="main">{children}</main>
         <Footer />
       </body>

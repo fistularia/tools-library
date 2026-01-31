@@ -10,35 +10,11 @@ interface TopPageProps {
 
 type Category = ArticleFrontmatter["category"];
 
-const tabCategories: Category[] = ["spreadsheet", "gas", "others"];
+const tabCategories: Category[] = ["spreadsheet", "gas"];
 
 export function TopPage({ baseUrl, articles }: TopPageProps) {
   const articlesByCategory = (category: Category) =>
     articles.filter((article) => article.frontmatter.category === category);
-
-  const tabScript = `
-    document.addEventListener('DOMContentLoaded', function() {
-      const tabs = document.querySelectorAll('.tabs__button');
-      const panels = document.querySelectorAll('.tab-panel');
-
-      tabs.forEach(function(tab) {
-        tab.addEventListener('click', function() {
-          const category = this.dataset.category;
-
-          tabs.forEach(function(t) { t.classList.remove('tabs__button--active'); });
-          this.classList.add('tabs__button--active');
-
-          panels.forEach(function(panel) {
-            if (category === 'all' || panel.dataset.category === category) {
-              panel.classList.remove('tab-panel--hidden');
-            } else {
-              panel.classList.add('tab-panel--hidden');
-            }
-          });
-        }.bind(tab));
-      });
-    });
-  `;
 
   return (
     <Layout title="Home" baseUrl={baseUrl}>
@@ -75,7 +51,6 @@ export function TopPage({ baseUrl, articles }: TopPageProps) {
                 class={`tab-panel${category !== "spreadsheet" ? " tab-panel--hidden" : ""}`}
                 data-category={category}
               >
-                <h2 class="articles__heading">{categoryLabels[category]}</h2>
                 <div class="articles__grid">
                   {categoryArticles.map((article) => (
                     <ArticleCard
@@ -90,7 +65,7 @@ export function TopPage({ baseUrl, articles }: TopPageProps) {
           })}
         </div>
       </div>
-      <script dangerouslySetInnerHTML={{ __html: tabScript }} />
+      <script src={`${baseUrl}scripts/tabs.js`} />
     </Layout>
   );
 }
