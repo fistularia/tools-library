@@ -29,6 +29,46 @@ async function buildStyles() {
   console.log("  Created: dist/styles/main.css");
 }
 
+interface SearchDataItem {
+  searchText: string;
+  slug: string;
+  title: string;
+  description: string;
+  category: string;
+}
+
+function stripHtmlTags(html: string): string {
+  return html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+}
+
+async function buildSearchData(articles: Awaited<ReturnType<typeof getArticles>>) {
+  console.log("Building search data...");
+
+  const searchData: SearchDataItem[] = articles.map((article) => {
+    const { slug, frontmatter, content } = article;
+    const { title, description, category, tags } = frontmatter;
+    const plainContent = stripHtmlTags(content);
+    const searchText = [slug, title, ...tags, description, plainContent].join("_");
+
+    return {
+      searchText,
+      slug,
+      title,
+      description,
+      category,
+    };
+  });
+
+  const jsonString = JSON.stringify(searchData);
+  const filePath = `${DIST_DIR}/search-data.json`;
+  await Deno.writeTextFile(filePath, jsonString);
+
+  const fileSizeBytes = new TextEncoder().encode(jsonString).length;
+  const fileSizeKB = (fileSizeBytes / 1024).toFixed(2);
+  const fileSizeMB = (fileSizeBytes / 1024 / 1024).toFixed(3);
+  console.log(`  Created: dist/search-data.json (${fileSizeKB} KB / ${fileSizeMB} MB)`);
+}
+
 async function buildPages() {
   console.log("Building pages...");
 
@@ -37,6 +77,9 @@ async function buildPages() {
   const baseUrl = isCI ? "https://tools-library.mints.ne.jp/" : "/";
 
   const articles = await getArticles();
+
+  // Build search data
+  await buildSearchData(articles);
 
   // Build top page
   const topPageHtml = "<!DOCTYPE html>" +

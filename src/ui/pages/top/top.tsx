@@ -23,6 +23,15 @@ export function TopPage({ baseUrl, articles }: TopPageProps) {
           <h1 class="hero__title">📒 業務に役立つスプレッドシートなどです。</h1>
         </section>
 
+        <div class="search-box">
+          <input
+            type="text"
+            class="search-box__input"
+            placeholder="検索..."
+            id="search-input"
+          />
+        </div>
+
         <div class="tabs">
           {tabCategories.map((category, index) => (
             <button
@@ -66,6 +75,7 @@ export function TopPage({ baseUrl, articles }: TopPageProps) {
         </div>
       </div>
       <script src={`${baseUrl}scripts/tabs.js`} />
+      <script src={`${baseUrl}scripts/search.js`} />
     </Layout>
   );
 }
