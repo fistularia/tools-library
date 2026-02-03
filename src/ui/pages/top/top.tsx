@@ -42,32 +42,34 @@ export function TopPage({ baseUrl, articles }: TopPageProps) {
           />
         </div>
 
-        <div class="tabs">
-          {tabCategories.map((category, index) => (
+        <div class="tabs-wrapper">
+          <div class="tabs">
+            {tabCategories.map((category, index) => (
+              <button
+                type="button"
+                key={category}
+                class={`tabs__button tabs__button--${category}${index === 0 ? " tabs__button--active" : ""}`}
+                data-category={category}
+              >
+                <span
+                  class="tabs__icon"
+                  style={`--icon-url: url(${baseUrl}${categoryIcons[category]})`}
+                />
+                {categoryLabels[category]}
+              </button>
+            ))}
             <button
               type="button"
-              key={category}
-              class={`tabs__button tabs__button--${category}${index === 0 ? " tabs__button--active" : ""}`}
-              data-category={category}
+              class="tabs__button tabs__button--all"
+              data-category="all"
             >
               <span
                 class="tabs__icon"
-                style={`--icon-url: url(${baseUrl}${categoryIcons[category]})`}
+                style={`--icon-url: url(${baseUrl}${categoryIcons.all})`}
               />
-              {categoryLabels[category]}
+              すべて
             </button>
-          ))}
-          <button
-            type="button"
-            class="tabs__button tabs__button--all"
-            data-category="all"
-          >
-            <span
-              class="tabs__icon"
-              style={`--icon-url: url(${baseUrl}${categoryIcons.all})`}
-            />
-            すべて
-          </button>
+          </div>
         </div>
 
         <div class="articles-container">

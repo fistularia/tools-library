@@ -63,12 +63,42 @@
   }
 }
 
+.tabs-wrapper {
+  position: relative;
+  margin-bottom: $spacing-lg;
+
+  @media (max-width: $breakpoint-md) {
+    // 右端にスクロール可能なことを示すグラデーション
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: $spacing-sm;
+      width: 24px;
+      background: linear-gradient(to right, transparent, $color-background);
+      pointer-events: none;
+    }
+  }
+}
+
 .tabs {
   display: flex;
   gap: $spacing-sm;
-  margin-bottom: $spacing-lg;
   border-bottom: 1px solid $color-border;
   padding-bottom: $spacing-sm;
+
+  @media (max-width: $breakpoint-md) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none; // IE/Edge
+    padding-right: $spacing-lg; // グラデーションの下のコンテンツ用の余白
+
+    &::-webkit-scrollbar {
+      display: none; // Chrome/Safari
+    }
+  }
 
   &--hidden {
     display: none;
@@ -79,6 +109,7 @@
     width: 16px;
     height: 16px;
     margin-right: $spacing-xs;
+    flex-shrink: 0;
     vertical-align: middle;
     background-color: #a2a2a2;
     mask-image: var(--icon-url);
@@ -105,10 +136,11 @@
     border-radius: $radius-sm $radius-sm 0 0;
     transition: background-color 0.2s, color 0.2s;
     position: relative;
+    white-space: nowrap;
+    flex-shrink: 0;
 
     &:hover {
       background-color:  #eeeeee;
-      // color: $color-text;
     }
 
     &--active {
