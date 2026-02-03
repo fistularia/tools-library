@@ -21,6 +21,7 @@ export function ArticleCard({ baseUrl, article }: ArticleCardProps) {
           </span>
           <img
             src={`${baseUrl}img/${slug}.png`}
+            onerror={`this.onerror=null;this.src='${baseUrl}img/default-${category}.png'`}
             alt={title}
             class="article-card__thumbnail"
           />
