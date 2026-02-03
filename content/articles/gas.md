@@ -5,6 +5,7 @@ category: "gas"
 downloadUrl:
 date: "2026-01-23"
 tags: ["勤怠", "管理", "時間計算"]
+rank: 40001
 ---
 
 ## 概要

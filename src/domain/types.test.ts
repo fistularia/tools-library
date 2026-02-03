@@ -2,13 +2,14 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.224.0/assert/mod.ts";
-import { categoryLabels, type ArticleFrontmatter } from "./types.ts";
+import { categoryLabels, categoryDefaultRank, type ArticleFrontmatter } from "./types.ts";
 
 const ALL_CATEGORIES: ArticleFrontmatter["category"][] = [
   "spreadsheet",
   "docs",
   "slides",
   "gas",
+  "hack",
   "others",
 ];
 

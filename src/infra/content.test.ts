@@ -89,7 +89,7 @@ Deno.test("getArticle - 異常系: 存在しないファイルはnullを返す",
   }
 });
 
-Deno.test("getArticles - 正常系: 記事一覧を日付降順で取得できる", async () => {
+Deno.test("getArticles - 正常系: 記事一覧をrank昇順で取得できる", async () => {
   const mockEntries = [
     { name: "article1.md", isFile: true, isDirectory: false, isSymlink: false },
     { name: "article2.md", isFile: true, isDirectory: false, isSymlink: false },
@@ -109,9 +109,9 @@ Deno.test("getArticles - 正常系: 記事一覧を日付降順で取得でき�
   );
 
   const fileContents: Record<string, string> = {
-    "./content/articles/article1.md": mockMarkdownWithFrontmatter, // 2024-01-15
-    "./content/articles/article2.md": mockMarkdownWithFrontmatter2, // 2024-01-20
-    "./content/articles/article3.md": mockMarkdownWithFrontmatter3, // 2024-01-10
+    "./content/articles/article1.md": mockMarkdownWithFrontmatter, // spreadsheet, rank: 10000
+    "./content/articles/article2.md": mockMarkdownWithFrontmatter2, // gas, rank: 40000
+    "./content/articles/article3.md": mockMarkdownWithFrontmatter3, // spreadsheet, rank: 10000
   };
 
   const readTextFileStub = stub(
@@ -124,10 +124,10 @@ Deno.test("getArticles - 正常系: 記事一覧を日付降順で取得でき�
     const articles = await getArticles();
 
     assertEquals(articles.length, 3);
-    // 日付降順でソートされていることを確認
-    assertEquals(articles[0].frontmatter.title, "2番目の記事"); // 2024-01-20
-    assertEquals(articles[1].frontmatter.title, "テスト記事"); // 2024-01-15
-    assertEquals(articles[2].frontmatter.title, "3番目の記事"); // 2024-01-10
+    // rank昇順でソートされていることを確認（spreadsheetはrank 10000、gasはrank 40000）
+    assertEquals(articles[0].frontmatter.category, "spreadsheet");
+    assertEquals(articles[1].frontmatter.category, "spreadsheet");
+    assertEquals(articles[2].frontmatter.category, "gas");
   } finally {
     readDirStub.restore();
     readTextFileStub.restore();

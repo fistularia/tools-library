@@ -64,9 +64,9 @@ Deno.test("TopPage - baseUrlがリンクに正しく適用される", () => {
   assertEquals(html.includes(`href="${baseUrl}articles/sheet1.html"`), true);
 });
 
-Deno.test("TopPage - セクション見出しが表示される", () => {
+Deno.test("TopPage - タブボタンが表示される", () => {
   const html = render(<TopPage baseUrl="/" articles={mockArticles} />);
 
-  assertEquals(html.includes("スプレッドシート</h2>"), true);
-  assertEquals(html.includes("GAS</h2>"), true);
+  assertEquals(html.includes("スプレッドシート</button>"), true);
+  assertEquals(html.includes("GAS</button>"), true);
 });

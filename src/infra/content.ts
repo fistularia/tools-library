@@ -3,6 +3,7 @@ import { Marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
 import type { Article, ArticleFrontmatter } from "../domain/types.ts";
+import { categoryDefaultRank } from "../domain/types.ts";
 
 const marked = new Marked(
   markedHighlight({
@@ -29,11 +30,11 @@ export async function getArticles(): Promise<Article[]> {
     }
   }
 
-  return articles.sort(
-    (a, b) =>
-      new Date(b.frontmatter.date).getTime() -
-      new Date(a.frontmatter.date).getTime(),
-  );
+  return articles.sort((a, b) => {
+    const rankA = a.frontmatter.rank ?? categoryDefaultRank[a.frontmatter.category];
+    const rankB = b.frontmatter.rank ?? categoryDefaultRank[b.frontmatter.category];
+    return rankA - rankB;
+  });
 }
 
 export async function getArticle(slug: string): Promise<Article | null> {
