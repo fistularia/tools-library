@@ -74,20 +74,41 @@
     display: none;
   }
 
+  &__icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: $spacing-xs;
+    vertical-align: middle;
+    background-color: #a2a2a2;
+    mask-image: var(--icon-url);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-image: var(--icon-url);
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    transition: background-color 0.2s;
+  }
+
   &__button {
+    display: flex;
+    align-items: center;
     padding: $spacing-sm $spacing-md;
     border: none;
     background: none;
     font-size: $font-size-sm;
-    color: $color-text-secondary;
+    font-weight: bold;
+    color: #a2a2a2;
     cursor: pointer;
     border-radius: $radius-sm $radius-sm 0 0;
     transition: background-color 0.2s, color 0.2s;
     position: relative;
 
     &:hover {
-      background-color: rgba($color-primary, 0.1);
-      color: $color-text;
+      background-color:  #eeeeee;
+      // color: $color-text;
     }
 
     &--active {
@@ -107,15 +128,71 @@
 
     &--spreadsheet.tabs__button--active {
       color: $color-spreadsheet;
+      .tabs__icon {
+        background-color: $color-spreadsheet;
+      }
       &::after {
         background-color: $color-spreadsheet;
       }
     }
 
+    &--docs.tabs__button--active {
+      color: $color-docs;
+      .tabs__icon {
+        background-color: $color-docs;
+      }
+      &::after {
+        background-color: $color-docs;
+      }
+    }
+
+    &--slides.tabs__button--active {
+      color: $color-slides;
+      .tabs__icon {
+        background-color: $color-slides;
+      }
+      &::after {
+        background-color: $color-slides;
+      }
+    }
+
     &--gas.tabs__button--active {
       color: $color-gas;
+      .tabs__icon {
+        background-color: $color-gas;
+      }
       &::after {
         background-color: $color-gas;
+      }
+    }
+
+    &--hack.tabs__button--active {
+      color: $color-hack;
+      .tabs__icon {
+        background-color: $color-hack;
+      }
+      &::after {
+        background-color: $color-hack;
+      }
+    }
+
+    &--others.tabs__button--active {
+      color: $color-others;
+      .tabs__icon {
+        background-color: $color-others;
+      }
+      &::after {
+        background-color: $color-others;
+      }
+    }
+
+    &--all.tabs__button--active {
+      color: $color-all;
+      .tabs__icon {
+        background-color: $color-all;
+      }
+      &::after {
+        background-color: $color-all;
       }
     }
   }

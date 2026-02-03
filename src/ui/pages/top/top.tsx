@@ -10,7 +10,17 @@ interface TopPageProps {
 
 type Category = ArticleFrontmatter["category"];
 
-const tabCategories: Category[] = ["spreadsheet", "gas"];
+const tabCategories: Category[] = ["spreadsheet", "docs", "slides", "gas", "hack"];
+
+const categoryIcons: Record<Category | "all", string> = {
+  spreadsheet: "img/spreadsheet.svg",
+  docs: "img/docs.svg",
+  slides: "img/slides.svg",
+  gas: "img/gas.svg",
+  hack: "img/hack.svg",
+  // others: "img/all.svg",
+  all: "img/all.svg",
+};
 
 export function TopPage({ baseUrl, articles }: TopPageProps) {
   const articlesByCategory = (category: Category) =>
@@ -20,7 +30,7 @@ export function TopPage({ baseUrl, articles }: TopPageProps) {
     <Layout title="Home" baseUrl={baseUrl}>
       <div class="top-page">
         <section class="hero">
-          <h1 class="hero__title">📒 業務効率化ツール</h1>
+          <h1 class="hero__title">🧪 業務効率化ツール</h1>
         </section>
 
         <div class="search-box">
@@ -35,17 +45,27 @@ export function TopPage({ baseUrl, articles }: TopPageProps) {
         <div class="tabs">
           {tabCategories.map((category, index) => (
             <button
+              type="button"
               key={category}
               class={`tabs__button tabs__button--${category}${index === 0 ? " tabs__button--active" : ""}`}
               data-category={category}
             >
+              <span
+                class="tabs__icon"
+                style={`--icon-url: url(${baseUrl}${categoryIcons[category]})`}
+              />
               {categoryLabels[category]}
             </button>
           ))}
           <button
-            class="tabs__button"
+            type="button"
+            class="tabs__button tabs__button--all"
             data-category="all"
           >
+            <span
+              class="tabs__icon"
+              style={`--icon-url: url(${baseUrl}${categoryIcons.all})`}
+            />
             すべて
           </button>
         </div>
