@@ -2,7 +2,6 @@ export interface ArticleFrontmatter {
   title: string;
   description: string;
   category: "spreadsheet" | "docs" | "slides" | "gas" | "hack"
-  // category: "spreadsheet" | "docs" | "slides" | "gas" | "hack" | "others";
   downloadUrl: string;
   date: string;
   tags: string[];
@@ -15,7 +14,6 @@ export const categoryDefaultRank: Record<ArticleFrontmatter["category"], number>
   slides: 30000,
   gas: 40000,
   hack: 50000,
-  // others: 90000,
 };
 
 export interface Article {
@@ -30,7 +28,6 @@ export const categoryLabels: Record<ArticleFrontmatter["category"], string> = {
   slides: "スライド",
   gas: "Google App Script",
   hack: "Hack",
-  // others: "その他",
 };
 // export const categoryLabels: Record<ArticleFrontmatter["category"], string> = {
 //   spreadsheet: "Sheets",

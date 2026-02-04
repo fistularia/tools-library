@@ -12,14 +12,12 @@ type Category = ArticleFrontmatter["category"];
 
 const tabCategories: Category[] = ["spreadsheet", "docs", "slides", "gas", "hack"];
 
-const categoryIcons: Record<Category | "all", string> = {
+const categoryIcons: Record<Category, string> = {
   spreadsheet: "img/spreadsheet.svg",
   docs: "img/docs.svg",
   slides: "img/slides.svg",
   gas: "img/gas.svg",
   hack: "img/hack.svg",
-  // others: "img/all.svg",
-  all: "img/all.svg",
 };
 
 export function TopPage({ baseUrl, articles }: TopPageProps) {
@@ -58,17 +56,6 @@ export function TopPage({ baseUrl, articles }: TopPageProps) {
                 {categoryLabels[category]}
               </button>
             ))}
-            <button
-              type="button"
-              class="tabs__button tabs__button--all"
-              data-category="all"
-            >
-              <span
-                class="tabs__icon"
-                style={`--icon-url: url(${baseUrl}${categoryIcons.all})`}
-              />
-              すべて
-            </button>
           </div>
         </div>
 

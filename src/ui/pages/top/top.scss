@@ -207,26 +207,6 @@
         background-color: $color-hack;
       }
     }
-
-    &--others.tabs__button--active {
-      color: $color-others;
-      .tabs__icon {
-        background-color: $color-others;
-      }
-      &::after {
-        background-color: $color-others;
-      }
-    }
-
-    &--all.tabs__button--active {
-      color: $color-all;
-      .tabs__icon {
-        background-color: $color-all;
-      }
-      &::after {
-        background-color: $color-all;
-      }
-    }
   }
 }
 

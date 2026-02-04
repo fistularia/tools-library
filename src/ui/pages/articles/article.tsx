@@ -24,6 +24,7 @@ export function ArticlePage({ baseUrl, article }: ArticlePageProps) {
           <h1 class="article-page__title">{title}</h1>
           <img
             src={`${baseUrl}img/${slug}.png`}
+            onerror={`this.onerror=null;this.src='${baseUrl}img/default-${category}.png'`}
             alt={title}
             class="article-page__thumbnail"
           />
