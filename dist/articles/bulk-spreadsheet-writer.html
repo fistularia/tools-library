@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>スプレッドシートに一括書き込み | tools library</title><link rel="stylesheet" href="/styles/main.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"/></head><body><main class="main"><article class="article-page"><header class="article-page__header"><span class="article-page__category article-page__category--gas">Google App Script</span><h1 class="article-page__title">スプレッドシートに一括書き込み</h1><img src="/img/bulk-spreadsheet-writer.png" alt="スプレッドシートに一括書き込み" class="article-page__thumbnail"/><p class="article-page__description">フォルダ内のすべてのスプレッドシートに同じ内容を書き込みます</p><div class="article-page__meta"><time class="article-page__date">2026-02-04</time><div class="article-page__tags"><span class="article-page__tag">ライブラリ</span></div></div></header><div class="article-page__download"><a href="https://docs.google.com/spreadsheets/d/1AgpM6bvGCAg12es7eFecZbWc6AXYTyYK7hb78MUJv1E/template/preview" target="_blank" rel="noopener noreferrer" class="download-button">ファイルをコピー</a></div><div class="article-page__content"><h2>概要</h2>
+<p>フォルダ内のスプレッドシートの同じシート、同じセルに一括で書き込む。</p>
+<h2>Class BulkSpreadsheetWriter</h2>
+<pre><code class="hljs language-js"><span class="hljs-comment">/**
+ * フォルダ内の全スプレッドシートに対して一括書き込みを行うクラス
+ */</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">BulkSpreadsheetWriter</span> {
+  <span class="hljs-comment">/**
+   * <span class="hljs-doctag">@param</span> {<span class="hljs-type">string</span>} <span class="hljs-variable">folderId</span> - 処理対象のフォルダID
+   */</span>
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">folderId</span>) {
+    <span class="hljs-keyword">if</span> (!folderId) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;folderId is required&#x27;</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">folderId</span> = folderId;
+  }
+
+  <span class="hljs-comment">/**
+   * 指定したシートとセルに値を書き込む
+   * <span class="hljs-doctag">@param</span> {<span class="hljs-type">string</span>} <span class="hljs-variable">sheetName</span> - 対象シート名
+   * <span class="hljs-doctag">@param</span> {<span class="hljs-type">string</span>} <span class="hljs-variable">cellAddress</span> - セルアドレス (例: &quot;A1&quot;)
+   * <span class="hljs-doctag">@param</span> {<span class="hljs-type">any</span>} <span class="hljs-variable">value</span> - 書き込む値
+   */</span>
+  <span class="hljs-title function_">writeToAll</span>(<span class="hljs-params">sheetName, cellAddress, value</span>) {
+    <span class="hljs-keyword">const</span> spreadsheetIds = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">_getSpreadsheetIds</span>();
+
+    spreadsheetIds.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">id</span> =&gt;</span> {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">_writeValue</span>(id, sheetName, cellAddress, value);
+    });
+  }
+
+  <span class="hljs-comment">/**
+   * フォルダ内のスプレッドシートID一覧を取得
+   * <span class="hljs-doctag">@private</span>
+   */</span>
+  <span class="hljs-title function_">_getSpreadsheetIds</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">const</span> folder = <span class="hljs-title class_">DriveApp</span>.<span class="hljs-title function_">getFolderById</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">folderId</span>);
+    <span class="hljs-keyword">const</span> files = folder.<span class="hljs-title function_">getFilesByType</span>(<span class="hljs-title class_">MimeType</span>.<span class="hljs-property">GOOGLE_SHEETS</span>);
+    <span class="hljs-keyword">const</span> ids = [];
+    
+    <span class="hljs-keyword">while</span> (files.<span class="hljs-title function_">hasNext</span>()) {
+      ids.<span class="hljs-title function_">push</span>(files.<span class="hljs-title function_">next</span>().<span class="hljs-title function_">getId</span>());
+    }
+    <span class="hljs-keyword">return</span> ids;
+  }
+
+  <span class="hljs-comment">/**
+   * 単一のスプレッドシートへ書き込み
+   * <span class="hljs-doctag">@private</span>
+   */</span>
+  <span class="hljs-title function_">_writeValue</span>(<span class="hljs-params">id, sheetName, cellAddress, value</span>) {
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">const</span> ss = <span class="hljs-title class_">SpreadsheetApp</span>.<span class="hljs-title function_">openById</span>(id);
+      <span class="hljs-keyword">const</span> sheet = ss.<span class="hljs-title function_">getSheetByName</span>(sheetName);
+
+      <span class="hljs-keyword">if</span> (!sheet) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">warn</span>(<span class="hljs-string">`Skip: &quot;<span class="hljs-subst">${ss.getName()}</span>&quot; (ID:<span class="hljs-subst">${id}</span>) にシート &quot;<span class="hljs-subst">${sheetName}</span>&quot; が見つかりません。`</span>);
+        <span class="hljs-keyword">return</span>;
+      }
+
+      sheet.<span class="hljs-title function_">getRange</span>(cellAddress).<span class="hljs-title function_">setValue</span>(value);
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Success: &quot;<span class="hljs-subst">${ss.getName()}</span>&quot; の <span class="hljs-subst">${cellAddress}</span> を更新しました。`</span>);
+    } <span class="hljs-keyword">catch</span> (e) {
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">`Error: ID[<span class="hljs-subst">${id}</span>] の処理中に例外が発生しました: <span class="hljs-subst">${e.message}</span>`</span>);
+    }
+  }
+}
+</code></pre><h2>呼び出し用コード</h2>
+<pre><code class="hljs language-js">
+<span class="hljs-comment">/**
+ * スプレッドシートの値を読み取り、一括書き込みを実行する
+ */</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">runBulkUpdate</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> sheet = <span class="hljs-title class_">SpreadsheetApp</span>.<span class="hljs-title function_">getActiveSpreadsheet</span>().<span class="hljs-title function_">getActiveSheet</span>();
+
+  <span class="hljs-keyword">const</span> folderUrl = sheet.<span class="hljs-title function_">getRange</span>(<span class="hljs-string">&#x27;B1&#x27;</span>).<span class="hljs-title function_">getValue</span>();
+  <span class="hljs-keyword">const</span> folderId = <span class="hljs-title function_">extractFolderId</span>(folderUrl);
+  
+  <span class="hljs-keyword">if</span> (!folderId) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;フォルダURLが正しくありません。&#x27;</span>);
+    <span class="hljs-keyword">return</span>;
+  }
+
+  <span class="hljs-comment">// クラスのインスタンス化と実行</span>
+  <span class="hljs-keyword">const</span> writer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BulkSpreadsheetWriter</span>(folderId);
+  
+  writer.<span class="hljs-title function_">writeToAll</span>(
+    sheet.<span class="hljs-title function_">getRange</span>(<span class="hljs-string">&#x27;B2&#x27;</span>).<span class="hljs-title function_">getValue</span>(), <span class="hljs-comment">// sheetName</span>
+    sheet.<span class="hljs-title function_">getRange</span>(<span class="hljs-string">&#x27;B3&#x27;</span>).<span class="hljs-title function_">getValue</span>(), <span class="hljs-comment">// cellAddress</span>
+    sheet.<span class="hljs-title function_">getRange</span>(<span class="hljs-string">&#x27;B4&#x27;</span>).<span class="hljs-title function_">getValue</span>()  <span class="hljs-comment">// value</span>
+  );
+  
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;すべての処理が完了しました。&#x27;</span>);
+}
+
+<span class="hljs-comment">/**
+ * フォルダURLからIDを抽出するユーティリティ関数
+ */</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">extractFolderId</span>(<span class="hljs-params">url</span>) {
+  <span class="hljs-keyword">const</span> match = url.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/\/folders\/([a-zA-Z0-9_-]+)/</span>);
+  <span class="hljs-keyword">return</span> match ? match[<span class="hljs-number">1</span>] : <span class="hljs-literal">null</span>;
+}
+</code></pre></div><div class="article-page__footer"><a href="/" class="article-page__back">← 一覧に戻る</a></div></article></main><footer class="footer"><div class="footer__inner"><p class="footer__copyright">© 2026 tools library</p></div></footer></body></html>

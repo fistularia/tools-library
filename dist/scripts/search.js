@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     docs: 'ドキュメント',
     slides: 'スライド',
     gas: 'GAS',
+    hack: 'hack',
     others: 'その他'
   };
 
@@ -30,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
       '<a href="/articles/' + item.slug + '.html" class="article-card__link">' +
         '<div class="article-card__content">' +
           '<span class="article-card__category ' + categoryClass + '">' + categoryLabel + '</span>' +
-          '<img src="/img/' + item.slug + '.png" alt="' + item.title + '" class="article-card__thumbnail"/>' +
+          '<img src="/img/' + item.slug + '.png" onerror="this.onerror=null;this.src=\'/img/default-' + item.category + '.png\'" alt="' + item.title + '" class="article-card__thumbnail"/>' +
           '<div class="article-card__text-content">' +
             '<h2 class="article-card__title">' + item.title + '</h2>' +
             '<p class="article-card__description">' + item.description + '</p>' +
