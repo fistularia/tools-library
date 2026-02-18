@@ -1,0 +1,49 @@
+@use "../styles/variables" as *;
+
+.link-card {
+  position: relative;
+  background-color: $color-surface;
+  border-radius: $radius-md;
+  box-shadow: $shadow-sm;
+  overflow: hidden;
+  transition: all 0.15s;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    filter: saturate(1.15);
+  }
+
+  &__link {
+    display: block;
+    padding: $spacing-sm $spacing-md;
+    color: inherit;
+    &:hover { text-decoration: none; }
+  }
+
+  &__category {
+    display: inline-block;
+    font-size: $font-size-xs;
+    color: #0066aa;
+    font-weight: bold;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__title {
+    font-size: $font-size-sm;
+    color: $color-main;
+    margin: 0 0 $spacing-xs;
+    font-weight: bold;
+  }
+
+  &__external-icon {
+    font-size: $font-size-xs;
+    margin-left: $spacing-xs;
+    opacity: 0.6;
+  }
+
+  &__description {
+    color: $color-text-secondary;
+    font-size: $font-size-xs;
+    margin: 0;
+  }
+}

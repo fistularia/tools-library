@@ -1,0 +1,10 @@
+- url: "https://developers.google.com/apps-script"
+  title: "Google Apps Script"
+  description: "GASのドキュメント"
+  category: "gas"
+- url: "https://github.com/todotxt/todo.txt"
+  title: "GitHub - todotxt/todo.txt: ‼️"
+  description: "1行1タスクの管理法ドキュメント"
+  category: "hack"
+
+

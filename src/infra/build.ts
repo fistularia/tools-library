@@ -1,6 +1,7 @@
 import { render } from "preact-render-to-string";
 import * as sass from "npm:sass@1.69.7";
-import { getArticles } from "./content.ts";
+import { getArticles, getLinks } from "./content.ts";
+import type { Link } from "../domain/types.ts";
 import { TopPage } from "../ui/pages/top/top.tsx";
 import { ArticlePage } from "../ui/pages/articles/article.tsx";
 
@@ -69,6 +70,18 @@ async function buildSearchData(articles: Awaited<ReturnType<typeof getArticles>>
   console.log(`  Created: dist/search-data.json (${fileSizeKB} KB / ${fileSizeMB} MB)`);
 }
 
+async function buildLinksData(links: Link[]) {
+  const data = links.map(({ url, title, description, category }) => ({
+    searchText: [title, description, category].join("_"),
+    url,
+    title,
+    description,
+    category,
+  }));
+  await Deno.writeTextFile(`${DIST_DIR}/links-data.json`, JSON.stringify(data));
+  console.log("  Created: dist/links-data.json");
+}
+
 async function buildPages() {
   console.log("Building pages...");
 
@@ -77,13 +90,15 @@ async function buildPages() {
   const baseUrl = isCI ? "https://tools-library.mints.ne.jp/" : "/";
 
   const articles = await getArticles();
+  const links = await getLinks();
 
   // Build search data
   await buildSearchData(articles);
+  await buildLinksData(links);
 
   // Build top page
   const topPageHtml = "<!DOCTYPE html>" +
-    render(TopPage({ baseUrl, articles }));
+    render(TopPage({ baseUrl, articles, links }));
   await Deno.writeTextFile(`${DIST_DIR}/index.html`, topPageHtml);
   console.log("  Created: dist/index.html");
 

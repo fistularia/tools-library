@@ -1,11 +1,13 @@
 import { Layout } from "../Layout.tsx";
 import { ArticleCard } from "../../components/ArticleCard.tsx";
-import type { Article, ArticleFrontmatter } from "../../../domain/types.ts";
+import { LinkCard } from "../../components/LinkCard.tsx";
+import type { Article, ArticleFrontmatter, Link } from "../../../domain/types.ts";
 import { categoryLabels } from "../../../domain/types.ts";
 
 interface TopPageProps {
   baseUrl: string;
   articles: Article[];
+  links: Link[];
 }
 
 type Category = ArticleFrontmatter["category"];
@@ -20,7 +22,7 @@ const categoryIcons: Record<Category, string> = {
   hack: "img/hack.svg",
 };
 
-export function TopPage({ baseUrl, articles }: TopPageProps) {
+export function TopPage({ baseUrl, articles, links }: TopPageProps) {
   const articlesByCategory = (category: Category) =>
     articles.filter((article) => article.frontmatter.category === category);
 
@@ -82,6 +84,17 @@ export function TopPage({ baseUrl, articles }: TopPageProps) {
             );
           })}
         </div>
+
+        {links.length > 0 && (
+          <section class="links-section">
+            <h2 class="links-section__title">関連外部リンク</h2>
+            <div class="links-section__grid">
+              {links.map((link, i) => (
+                <LinkCard key={i} link={link} />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
       <script src={`${baseUrl}scripts/tabs.js`} />
       <script src={`${baseUrl}scripts/search.js`} />

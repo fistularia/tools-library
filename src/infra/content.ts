@@ -2,7 +2,8 @@ import matter from "gray-matter";
 import { Marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
-import type { Article, ArticleFrontmatter } from "../domain/types.ts";
+import { parse as parseYaml } from "@std/yaml";
+import type { Article, ArticleFrontmatter, Link } from "../domain/types.ts";
 import { categoryDefaultRank } from "../domain/types.ts";
 
 const marked = new Marked(
@@ -53,6 +54,11 @@ export async function getArticle(slug: string): Promise<Article | null> {
   } catch {
     return null;
   }
+}
+
+export async function getLinks(): Promise<Link[]> {
+  const fileContent = await Deno.readTextFile("./content/links.yaml");
+  return parseYaml(fileContent) as Link[];
 }
 
 export async function getArticlesByCategory(

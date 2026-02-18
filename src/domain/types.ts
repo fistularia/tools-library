@@ -22,6 +22,21 @@ export interface Article {
   content: string;
 }
 
+export interface Link {
+  url: string;
+  title: string;
+  description: string;
+  category: string;
+}
+
+export const linkCategoryLabels: Record<string, string> = {
+  spreadsheet: "スプレッドシート",
+  docs: "ドキュメント",
+  slides: "スライド",
+  gas: "Google App Script",
+  hack: "Hack",
+};
+
 export const categoryLabels: Record<ArticleFrontmatter["category"], string> = {
   spreadsheet: "スプレッドシート",
   docs: "ドキュメント",
