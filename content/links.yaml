@@ -18,4 +18,15 @@
   description: "漢字情報のAPI"
   category: "漢字"
 
+- url: "https://shonagon.ninjal.ac.jp/"
+  title: "少納言"
+  description: "現代日本語書き言葉均衡コーパス"
+  category: "言葉"
+
+- url: "https://www.mext.go.jp/a_menu/shotou/new-cs/senseiouen/1304651.htm"
+  title: "小学校理科の観察，実験の手引き"
+  description: "実験・観察の手順"
+  category: "理科"
+
+
 
