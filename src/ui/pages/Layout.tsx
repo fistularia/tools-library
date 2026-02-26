@@ -13,7 +13,8 @@ export function Layout({ title, baseUrl, children }: LayoutProps) {
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{title} | tools library</title>
+        <title>{title} | 業務効率化ツール</title>
+        <link rel="icon" href={`${baseUrl}img/icon.ico`} />
         <HeadTags />
         <link rel="stylesheet" href={`${baseUrl}styles/main.css`} />
         <link

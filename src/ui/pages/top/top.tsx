@@ -27,7 +27,7 @@ export function TopPage({ baseUrl, articles, links }: TopPageProps) {
     articles.filter((article) => article.frontmatter.category === category);
 
   return (
-    <Layout title="Home" baseUrl={baseUrl}>
+    <Layout title="トップページ" baseUrl={baseUrl}>
       <div class="top-page">
         <section class="hero">
           <h1 class="hero__title">🧪 業務効率化ツール</h1>
