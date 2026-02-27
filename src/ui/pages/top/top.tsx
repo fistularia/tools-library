@@ -1,13 +1,15 @@
 import { Layout } from "../Layout.tsx";
 import { ArticleCard } from "../../components/ArticleCard.tsx";
 import { LinkCard } from "../../components/LinkCard.tsx";
-import type { Article, ArticleFrontmatter, Link } from "../../../domain/types.ts";
+import { SnippetCard } from "../../components/SnippetCard.tsx";
+import type { Article, ArticleFrontmatter, Link, Snippet } from "../../../domain/types.ts";
 import { categoryLabels } from "../../../domain/types.ts";
 
 interface TopPageProps {
   baseUrl: string;
   articles: Article[];
   links: Link[];
+  snippets: Snippet[];
 }
 
 type Category = ArticleFrontmatter["category"];
@@ -22,7 +24,7 @@ const categoryIcons: Record<Category, string> = {
   hack: "img/hack.svg",
 };
 
-export function TopPage({ baseUrl, articles, links }: TopPageProps) {
+export function TopPage({ baseUrl, articles, links, snippets }: TopPageProps) {
   const articlesByCategory = (category: Category) =>
     articles.filter((article) => article.frontmatter.category === category);
 
@@ -85,6 +87,17 @@ export function TopPage({ baseUrl, articles, links }: TopPageProps) {
           })}
         </div>
 
+        {snippets.length > 0 && (
+          <section class="snippets-section">
+            <h2 class="snippets-section__title">スニペット</h2>
+            <div class="snippets-section__grid">
+              {snippets.map((snippet, i) => (
+                <SnippetCard key={i} snippet={snippet} />
+              ))}
+            </div>
+          </section>
+        )}
+
         {links.length > 0 && (
           <section class="links-section">
             <h2 class="links-section__title">関連外部リンク</h2>
@@ -96,6 +109,7 @@ export function TopPage({ baseUrl, articles, links }: TopPageProps) {
           </section>
         )}
       </div>
+      <script src={`${baseUrl}scripts/snippets.js`} />
       <script src={`${baseUrl}scripts/tabs.js`} />
       <script src={`${baseUrl}scripts/search.js`} />
     </Layout>

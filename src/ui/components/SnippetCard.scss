@@ -1,0 +1,84 @@
+@use "../styles/variables" as *;
+
+.snippet-card {
+  position: relative;
+  background-color: $color-surface;
+  border-radius: $radius-md;
+  box-shadow: $shadow-sm;
+  overflow: hidden;
+  padding: $spacing-sm $spacing-md;
+  cursor: pointer;
+  transition: all 0.15s;
+  outline: none;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    filter: saturate(1.15);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px $color-primary;
+  }
+
+  &--copied {
+    background-color: #e6f4ea;
+
+    .snippet-card__copy-icon::after {
+      content: " ✓";
+      color: #34a853;
+    }
+  }
+
+  &__category {
+    display: inline-block;
+    font-size: $font-size-xs;
+    color: #0066aa;
+    font-weight: bold;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &__title {
+    font-size: $font-size-sm;
+    color: $color-main;
+    margin: 0;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+  }
+
+  &__copy-icon {
+    font-size: $font-size-xs;
+    opacity: 0.5;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  &__description {
+    color: $color-text-secondary;
+    font-size: $font-size-xs;
+    margin: 0;
+  }
+
+  &__content {
+    margin: 0;
+    padding: $spacing-xs $spacing-sm;
+    background-color: #f0f4f8;
+    border-radius: $radius-sm;
+    font-size: $font-size-xs;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+
+    code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      color: #333;
+    }
+  }
+}

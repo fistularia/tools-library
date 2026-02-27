@@ -226,6 +226,29 @@
   }
 }
 
+.snippets-section {
+  margin-top: $spacing-xxl;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $color-border;
+
+  &__title {
+    font-size: $font-size-sm;
+    font-weight: bold;
+    color: $color-main;
+    margin-bottom: $spacing-md;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: $spacing-md;
+  }
+
+  &--hidden {
+    display: none;
+  }
+}
+
 .links-section {
   margin-top: $spacing-xxl;
   padding-top: $spacing-lg;

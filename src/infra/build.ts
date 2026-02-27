@@ -1,7 +1,7 @@
 import { render } from "preact-render-to-string";
 import * as sass from "npm:sass@1.69.7";
-import { getArticles, getLinks } from "./content.ts";
-import type { Link } from "../domain/types.ts";
+import { getArticles, getLinks, getSnippets } from "./content.ts";
+import type { Link, Snippet } from "../domain/types.ts";
 import { TopPage } from "../ui/pages/top/top.tsx";
 import { ArticlePage } from "../ui/pages/articles/article.tsx";
 
@@ -70,6 +70,18 @@ async function buildSearchData(articles: Awaited<ReturnType<typeof getArticles>>
   console.log(`  Created: dist/search-data.json (${fileSizeKB} KB / ${fileSizeMB} MB)`);
 }
 
+async function buildSnippetsData(snippets: Snippet[]) {
+  const data = snippets.map(({ title, description, content, category, tags }) => ({
+    searchText: [title, description, category, ...tags, content].join("_"),
+    title,
+    description,
+    content,
+    category,
+  }));
+  await Deno.writeTextFile(`${DIST_DIR}/snippets-data.json`, JSON.stringify(data));
+  console.log("  Created: dist/snippets-data.json");
+}
+
 async function buildLinksData(links: Link[]) {
   const data = links.map(({ url, title, description, category }) => ({
     searchText: [title, description, category].join("_"),
@@ -91,14 +103,16 @@ async function buildPages() {
 
   const articles = await getArticles();
   const links = await getLinks();
+  const snippets = await getSnippets();
 
   // Build search data
   await buildSearchData(articles);
   await buildLinksData(links);
+  await buildSnippetsData(snippets);
 
   // Build top page
   const topPageHtml = "<!DOCTYPE html>" +
-    render(TopPage({ baseUrl, articles, links }));
+    render(TopPage({ baseUrl, articles, links, snippets }));
   await Deno.writeTextFile(`${DIST_DIR}/index.html`, topPageHtml);
   console.log("  Created: dist/index.html");
 

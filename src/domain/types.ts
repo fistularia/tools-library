@@ -37,6 +37,14 @@ export const linkCategoryLabels: Record<string, string> = {
   hack: "Hack",
 };
 
+export interface Snippet {
+  title: string;
+  description: string;
+  content: string;
+  category: string;
+  tags: string[];
+}
+
 export const categoryLabels: Record<ArticleFrontmatter["category"], string> = {
   spreadsheet: "スプレッドシート",
   docs: "ドキュメント",
