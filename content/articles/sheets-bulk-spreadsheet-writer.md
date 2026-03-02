@@ -5,9 +5,9 @@ category: "spreadsheet"
 downloadUrl: "https://docs.google.com/spreadsheets/d/13CeEm1j3K7najVixRYAlyUkBURh6U1xvoFmx69xjBZY/template/preview"
 date: "2026-02-04"
 tags: ["一括処理"]
-rank: 10010
+rank: 10020
 ---
 
 ## 概要
-フォルダ内のスプレッドシートの同じシート、同じセルに一括で書き込むためのシートです。
 
+フォルダ内のスプレッドシートの同じシート、同じセルに一括で書き込むためのシートです。

@@ -42,14 +42,18 @@ function stripHtmlTags(html: string): string {
   return html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 }
 
-async function buildSearchData(articles: Awaited<ReturnType<typeof getArticles>>) {
+async function buildSearchData(
+  articles: Awaited<ReturnType<typeof getArticles>>,
+) {
   console.log("Building search data...");
 
   const searchData: SearchDataItem[] = articles.map((article) => {
     const { slug, frontmatter, content } = article;
     const { title, description, category, tags } = frontmatter;
     const plainContent = stripHtmlTags(content);
-    const searchText = [slug, title, ...tags, description, plainContent].join("_");
+    const searchText = [slug, title, ...tags, description, plainContent].join(
+      "_",
+    );
 
     return {
       searchText,
@@ -67,18 +71,25 @@ async function buildSearchData(articles: Awaited<ReturnType<typeof getArticles>>
   const fileSizeBytes = new TextEncoder().encode(jsonString).length;
   const fileSizeKB = (fileSizeBytes / 1024).toFixed(2);
   const fileSizeMB = (fileSizeBytes / 1024 / 1024).toFixed(3);
-  console.log(`  Created: dist/search-data.json (${fileSizeKB} KB / ${fileSizeMB} MB)`);
+  console.log(
+    `  Created: dist/search-data.json (${fileSizeKB} KB / ${fileSizeMB} MB)`,
+  );
 }
 
 async function buildSnippetsData(snippets: Snippet[]) {
-  const data = snippets.map(({ title, description, content, category, tags }) => ({
+  const data = snippets.map((
+    { title, description, content, category, tags },
+  ) => ({
     searchText: [title, description, category, ...tags, content].join("_"),
     title,
     description,
     content,
     category,
   }));
-  await Deno.writeTextFile(`${DIST_DIR}/snippets-data.json`, JSON.stringify(data));
+  await Deno.writeTextFile(
+    `${DIST_DIR}/snippets-data.json`,
+    JSON.stringify(data),
+  );
   console.log("  Created: dist/snippets-data.json");
 }
 

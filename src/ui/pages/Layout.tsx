@@ -22,9 +22,9 @@ export function Layout({ title, baseUrl, children }: LayoutProps) {
           href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
         />
       </head>
-      
+
       <body>
-      {/*<Header baseUrl={baseUrl} />*/}
+        {/*<Header baseUrl={baseUrl} />*/}
         <main class="main">{children}</main>
         <Footer />
       </body>

@@ -49,7 +49,6 @@ Deno.test("TopPage - docsカテゴリの記事はトップページに表示さ�
   assertEquals(html.includes("ドキュメント記事1"), false);
 });
 
-
 Deno.test("TopPage - 記事が0件でもエラーにならない", () => {
   const html = render(<TopPage baseUrl="/" articles={[]} />);
 

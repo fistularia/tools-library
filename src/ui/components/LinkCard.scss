@@ -17,7 +17,9 @@
     display: block;
     padding: $spacing-sm $spacing-md;
     color: inherit;
-    &:hover { text-decoration: none; }
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   &__category {

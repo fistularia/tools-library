@@ -1,14 +1,17 @@
 export interface ArticleFrontmatter {
   title: string;
   description: string;
-  category: "spreadsheet" | "docs" | "slides" | "gas" | "hack"
+  category: "spreadsheet" | "docs" | "slides" | "gas" | "hack";
   downloadUrl: string;
   date: string;
   tags: string[];
   rank?: number;
 }
 
-export const categoryDefaultRank: Record<ArticleFrontmatter["category"], number> = {
+export const categoryDefaultRank: Record<
+  ArticleFrontmatter["category"],
+  number
+> = {
   spreadsheet: 10000,
   docs: 20000,
   slides: 30000,

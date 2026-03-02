@@ -9,7 +9,12 @@ export function LinkCard({ link }: LinkCardProps) {
 
   return (
     <article class="link-card">
-      <a href={url} class="link-card__link" target="_blank" rel="noopener noreferrer">
+      <a
+        href={url}
+        class="link-card__link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <span class="link-card__category">
           #{category}
         </span>

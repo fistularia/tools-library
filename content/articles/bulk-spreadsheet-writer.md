@@ -9,8 +9,8 @@ rank: 40010
 ---
 
 ## 概要
-フォルダ内のスプレッドシートの同じシート、同じセルに一括で書き込む。
 
+フォルダ内のスプレッドシートの同じシート、同じセルに一括で書き込む。
 
 ## Class BulkSpreadsheetWriter
 
@@ -23,7 +23,7 @@ class BulkSpreadsheetWriter {
    * @param {string} folderId - 処理対象のフォルダID
    */
   constructor(folderId) {
-    if (!folderId) throw new Error('folderId is required');
+    if (!folderId) throw new Error("folderId is required");
     this.folderId = folderId;
   }
 
@@ -36,7 +36,7 @@ class BulkSpreadsheetWriter {
   writeToAll(sheetName, cellAddress, value) {
     const spreadsheetIds = this._getSpreadsheetIds();
 
-    spreadsheetIds.forEach(id => {
+    spreadsheetIds.forEach((id) => {
       this._writeValue(id, sheetName, cellAddress, value);
     });
   }
@@ -49,7 +49,7 @@ class BulkSpreadsheetWriter {
     const folder = DriveApp.getFolderById(this.folderId);
     const files = folder.getFilesByType(MimeType.GOOGLE_SHEETS);
     const ids = [];
-    
+
     while (files.hasNext()) {
       ids.push(files.next().getId());
     }
@@ -66,47 +66,52 @@ class BulkSpreadsheetWriter {
       const sheet = ss.getSheetByName(sheetName);
 
       if (!sheet) {
-        console.warn(`Skip: "${ss.getName()}" (ID:${id}) にシート "${sheetName}" が見つかりません。`);
+        console.warn(
+          `Skip: "${ss.getName()}" (ID:${id}) にシート "${sheetName}" が見つかりません。`,
+        );
         return;
       }
 
       sheet.getRange(cellAddress).setValue(value);
-      console.log(`Success: "${ss.getName()}" の ${cellAddress} を更新しました。`);
+      console.log(
+        `Success: "${ss.getName()}" の ${cellAddress} を更新しました。`,
+      );
     } catch (e) {
-      console.error(`Error: ID[${id}] の処理中に例外が発生しました: ${e.message}`);
+      console.error(
+        `Error: ID[${id}] の処理中に例外が発生しました: ${e.message}`,
+      );
     }
   }
 }
-
 ```
 
 ## 呼び出し用コード
-```js
 
+```js
 /**
  * スプレッドシートの値を読み取り、一括書き込みを実行する
  */
 function runBulkUpdate() {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
-  const folderUrl = sheet.getRange('B1').getValue();
+  const folderUrl = sheet.getRange("B1").getValue();
   const folderId = extractFolderId(folderUrl);
-  
+
   if (!folderId) {
-    console.error('フォルダURLが正しくありません。');
+    console.error("フォルダURLが正しくありません。");
     return;
   }
 
   // クラスのインスタンス化と実行
   const writer = new BulkSpreadsheetWriter(folderId);
-  
+
   writer.writeToAll(
-    sheet.getRange('B2').getValue(), // sheetName
-    sheet.getRange('B3').getValue(), // cellAddress
-    sheet.getRange('B4').getValue()  // value
+    sheet.getRange("B2").getValue(), // sheetName
+    sheet.getRange("B3").getValue(), // cellAddress
+    sheet.getRange("B4").getValue(), // value
   );
-  
-  console.log('すべての処理が完了しました。');
+
+  console.log("すべての処理が完了しました。");
 }
 
 /**
@@ -116,6 +121,4 @@ function extractFolderId(url) {
   const match = url.match(/\/folders\/([a-zA-Z0-9_-]+)/);
   return match ? match[1] : null;
 }
-
 ```
-

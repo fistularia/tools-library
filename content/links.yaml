@@ -12,7 +12,7 @@
   title: "小学校で習う漢字 チェックツール"
   description: "各学年で習う漢字を検索"
   category: "漢字"
-  
+
 - url: "https://kanjiapi.dev/"
   title: "kanjiapi"
   description: "漢字情報のAPI"
@@ -27,6 +27,3 @@
   title: "小学校理科の観察，実験の手引き"
   description: "実験・観察の手順"
   category: "理科"
-
-
-

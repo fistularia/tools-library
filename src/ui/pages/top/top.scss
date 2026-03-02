@@ -18,8 +18,8 @@
     &:focus {
       background-color: mix($color-main, $color-background, 85%);
       &::placeholder {
-      color: #fff;
-    }
+        color: #fff;
+      }
     }
 
     &::placeholder {
@@ -140,7 +140,7 @@
     flex-shrink: 0;
 
     &:hover {
-      background-color:  #eeeeee;
+      background-color: #eeeeee;
     }
 
     &--active {
@@ -236,6 +236,12 @@
     font-weight: bold;
     color: $color-main;
     margin-bottom: $spacing-md;
+
+    span {
+      font-size: 0.85em;
+      font-weight: normal;
+      margin-left: $spacing-sm;
+    }
   }
 
   &__grid {

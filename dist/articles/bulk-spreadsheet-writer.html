@@ -13,7 +13,7 @@
    * <span class="hljs-doctag">@param</span> {<span class="hljs-type">string</span>} <span class="hljs-variable">folderId</span> - 処理対象のフォルダID
    */</span>
   <span class="hljs-title function_">constructor</span>(<span class="hljs-params">folderId</span>) {
-    <span class="hljs-keyword">if</span> (!folderId) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;folderId is required&#x27;</span>);
+    <span class="hljs-keyword">if</span> (!folderId) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;folderId is required&quot;</span>);
     <span class="hljs-variable language_">this</span>.<span class="hljs-property">folderId</span> = folderId;
   }
 
@@ -26,7 +26,7 @@
   <span class="hljs-title function_">writeToAll</span>(<span class="hljs-params">sheetName, cellAddress, value</span>) {
     <span class="hljs-keyword">const</span> spreadsheetIds = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">_getSpreadsheetIds</span>();
 
-    spreadsheetIds.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">id</span> =&gt;</span> {
+    spreadsheetIds.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">id</span>) =&gt;</span> {
       <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">_writeValue</span>(id, sheetName, cellAddress, value);
     });
   }
@@ -39,7 +39,7 @@
     <span class="hljs-keyword">const</span> folder = <span class="hljs-title class_">DriveApp</span>.<span class="hljs-title function_">getFolderById</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">folderId</span>);
     <span class="hljs-keyword">const</span> files = folder.<span class="hljs-title function_">getFilesByType</span>(<span class="hljs-title class_">MimeType</span>.<span class="hljs-property">GOOGLE_SHEETS</span>);
     <span class="hljs-keyword">const</span> ids = [];
-    
+
     <span class="hljs-keyword">while</span> (files.<span class="hljs-title function_">hasNext</span>()) {
       ids.<span class="hljs-title function_">push</span>(files.<span class="hljs-title function_">next</span>().<span class="hljs-title function_">getId</span>());
     }
@@ -56,43 +56,48 @@
       <span class="hljs-keyword">const</span> sheet = ss.<span class="hljs-title function_">getSheetByName</span>(sheetName);
 
       <span class="hljs-keyword">if</span> (!sheet) {
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">warn</span>(<span class="hljs-string">`Skip: &quot;<span class="hljs-subst">${ss.getName()}</span>&quot; (ID:<span class="hljs-subst">${id}</span>) にシート &quot;<span class="hljs-subst">${sheetName}</span>&quot; が見つかりません。`</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">warn</span>(
+          <span class="hljs-string">`Skip: &quot;<span class="hljs-subst">${ss.getName()}</span>&quot; (ID:<span class="hljs-subst">${id}</span>) にシート &quot;<span class="hljs-subst">${sheetName}</span>&quot; が見つかりません。`</span>,
+        );
         <span class="hljs-keyword">return</span>;
       }
 
       sheet.<span class="hljs-title function_">getRange</span>(cellAddress).<span class="hljs-title function_">setValue</span>(value);
-      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Success: &quot;<span class="hljs-subst">${ss.getName()}</span>&quot; の <span class="hljs-subst">${cellAddress}</span> を更新しました。`</span>);
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(
+        <span class="hljs-string">`Success: &quot;<span class="hljs-subst">${ss.getName()}</span>&quot; の <span class="hljs-subst">${cellAddress}</span> を更新しました。`</span>,
+      );
     } <span class="hljs-keyword">catch</span> (e) {
-      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">`Error: ID[<span class="hljs-subst">${id}</span>] の処理中に例外が発生しました: <span class="hljs-subst">${e.message}</span>`</span>);
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(
+        <span class="hljs-string">`Error: ID[<span class="hljs-subst">${id}</span>] の処理中に例外が発生しました: <span class="hljs-subst">${e.message}</span>`</span>,
+      );
     }
   }
 }
 </code></pre><h2>呼び出し用コード</h2>
-<pre><code class="hljs language-js">
-<span class="hljs-comment">/**
+<pre><code class="hljs language-js"><span class="hljs-comment">/**
  * スプレッドシートの値を読み取り、一括書き込みを実行する
  */</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">runBulkUpdate</span>(<span class="hljs-params"></span>) {
   <span class="hljs-keyword">const</span> sheet = <span class="hljs-title class_">SpreadsheetApp</span>.<span class="hljs-title function_">getActiveSpreadsheet</span>().<span class="hljs-title function_">getActiveSheet</span>();
 
-  <span class="hljs-keyword">const</span> folderUrl = sheet.<span class="hljs-title function_">getRange</span>(<span class="hljs-string">&#x27;B1&#x27;</span>).<span class="hljs-title function_">getValue</span>();
+  <span class="hljs-keyword">const</span> folderUrl = sheet.<span class="hljs-title function_">getRange</span>(<span class="hljs-string">&quot;B1&quot;</span>).<span class="hljs-title function_">getValue</span>();
   <span class="hljs-keyword">const</span> folderId = <span class="hljs-title function_">extractFolderId</span>(folderUrl);
-  
+
   <span class="hljs-keyword">if</span> (!folderId) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;フォルダURLが正しくありません。&#x27;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&quot;フォルダURLが正しくありません。&quot;</span>);
     <span class="hljs-keyword">return</span>;
   }
 
   <span class="hljs-comment">// クラスのインスタンス化と実行</span>
   <span class="hljs-keyword">const</span> writer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BulkSpreadsheetWriter</span>(folderId);
-  
+
   writer.<span class="hljs-title function_">writeToAll</span>(
-    sheet.<span class="hljs-title function_">getRange</span>(<span class="hljs-string">&#x27;B2&#x27;</span>).<span class="hljs-title function_">getValue</span>(), <span class="hljs-comment">// sheetName</span>
-    sheet.<span class="hljs-title function_">getRange</span>(<span class="hljs-string">&#x27;B3&#x27;</span>).<span class="hljs-title function_">getValue</span>(), <span class="hljs-comment">// cellAddress</span>
-    sheet.<span class="hljs-title function_">getRange</span>(<span class="hljs-string">&#x27;B4&#x27;</span>).<span class="hljs-title function_">getValue</span>()  <span class="hljs-comment">// value</span>
+    sheet.<span class="hljs-title function_">getRange</span>(<span class="hljs-string">&quot;B2&quot;</span>).<span class="hljs-title function_">getValue</span>(), <span class="hljs-comment">// sheetName</span>
+    sheet.<span class="hljs-title function_">getRange</span>(<span class="hljs-string">&quot;B3&quot;</span>).<span class="hljs-title function_">getValue</span>(), <span class="hljs-comment">// cellAddress</span>
+    sheet.<span class="hljs-title function_">getRange</span>(<span class="hljs-string">&quot;B4&quot;</span>).<span class="hljs-title function_">getValue</span>(), <span class="hljs-comment">// value</span>
   );
-  
-  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;すべての処理が完了しました。&#x27;</span>);
+
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;すべての処理が完了しました。&quot;</span>);
 }
 
 <span class="hljs-comment">/**

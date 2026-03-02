@@ -10,28 +10,95 @@
   <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
     <span class="hljs-comment">// 辞書データを Map に変換して保持（検索速度を O(1) に向上）</span>
     <span class="hljs-variable language_">this</span>.<span class="hljs-property">hiraToKanaMap</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>([
-      [<span class="hljs-string">&#x27;あ&#x27;</span>, <span class="hljs-string">&#x27;ア&#x27;</span>], [<span class="hljs-string">&#x27;い&#x27;</span>, <span class="hljs-string">&#x27;イ&#x27;</span>], [<span class="hljs-string">&#x27;う&#x27;</span>, <span class="hljs-string">&#x27;ウ&#x27;</span>], [<span class="hljs-string">&#x27;え&#x27;</span>, <span class="hljs-string">&#x27;エ&#x27;</span>], [<span class="hljs-string">&#x27;お&#x27;</span>, <span class="hljs-string">&#x27;オ&#x27;</span>],
-      [<span class="hljs-string">&#x27;か&#x27;</span>, <span class="hljs-string">&#x27;カ&#x27;</span>], [<span class="hljs-string">&#x27;き&#x27;</span>, <span class="hljs-string">&#x27;キ&#x27;</span>], [<span class="hljs-string">&#x27;く&#x27;</span>, <span class="hljs-string">&#x27;ク&#x27;</span>], [<span class="hljs-string">&#x27;け&#x27;</span>, <span class="hljs-string">&#x27;ケ&#x27;</span>], [<span class="hljs-string">&#x27;こ&#x27;</span>, <span class="hljs-string">&#x27;コ&#x27;</span>],
-      [<span class="hljs-string">&#x27;さ&#x27;</span>, <span class="hljs-string">&#x27;サ&#x27;</span>], [<span class="hljs-string">&#x27;し&#x27;</span>, <span class="hljs-string">&#x27;シ&#x27;</span>], [<span class="hljs-string">&#x27;す&#x27;</span>, <span class="hljs-string">&#x27;ス&#x27;</span>], [<span class="hljs-string">&#x27;せ&#x27;</span>, <span class="hljs-string">&#x27;セ&#x27;</span>], [<span class="hljs-string">&#x27;そ&#x27;</span>, <span class="hljs-string">&#x27;ソ&#x27;</span>],
-      [<span class="hljs-string">&#x27;た&#x27;</span>, <span class="hljs-string">&#x27;タ&#x27;</span>], [<span class="hljs-string">&#x27;ち&#x27;</span>, <span class="hljs-string">&#x27;チ&#x27;</span>], [<span class="hljs-string">&#x27;つ&#x27;</span>, <span class="hljs-string">&#x27;ツ&#x27;</span>], [<span class="hljs-string">&#x27;て&#x27;</span>, <span class="hljs-string">&#x27;テ&#x27;</span>], [<span class="hljs-string">&#x27;と&#x27;</span>, <span class="hljs-string">&#x27;ト&#x27;</span>],
-      [<span class="hljs-string">&#x27;な&#x27;</span>, <span class="hljs-string">&#x27;ナ&#x27;</span>], [<span class="hljs-string">&#x27;に&#x27;</span>, <span class="hljs-string">&#x27;ニ&#x27;</span>], [<span class="hljs-string">&#x27;ぬ&#x27;</span>, <span class="hljs-string">&#x27;ヌ&#x27;</span>], [<span class="hljs-string">&#x27;ね&#x27;</span>, <span class="hljs-string">&#x27;ネ&#x27;</span>], [<span class="hljs-string">&#x27;の&#x27;</span>, <span class="hljs-string">&#x27;ノ&#x27;</span>],
-      [<span class="hljs-string">&#x27;は&#x27;</span>, <span class="hljs-string">&#x27;ハ&#x27;</span>], [<span class="hljs-string">&#x27;ひ&#x27;</span>, <span class="hljs-string">&#x27;ヒ&#x27;</span>], [<span class="hljs-string">&#x27;ふ&#x27;</span>, <span class="hljs-string">&#x27;フ&#x27;</span>], [<span class="hljs-string">&#x27;へ&#x27;</span>, <span class="hljs-string">&#x27;ヘ&#x27;</span>], [<span class="hljs-string">&#x27;ほ&#x27;</span>, <span class="hljs-string">&#x27;ホ&#x27;</span>],
-      [<span class="hljs-string">&#x27;ま&#x27;</span>, <span class="hljs-string">&#x27;マ&#x27;</span>], [<span class="hljs-string">&#x27;み&#x27;</span>, <span class="hljs-string">&#x27;ミ&#x27;</span>], [<span class="hljs-string">&#x27;む&#x27;</span>, <span class="hljs-string">&#x27;ム&#x27;</span>], [<span class="hljs-string">&#x27;め&#x27;</span>, <span class="hljs-string">&#x27;メ&#x27;</span>], [<span class="hljs-string">&#x27;も&#x27;</span>, <span class="hljs-string">&#x27;モ&#x27;</span>],
-      [<span class="hljs-string">&#x27;や&#x27;</span>, <span class="hljs-string">&#x27;ヤ&#x27;</span>], [<span class="hljs-string">&#x27;ゆ&#x27;</span>, <span class="hljs-string">&#x27;ユ&#x27;</span>], [<span class="hljs-string">&#x27;よ&#x27;</span>, <span class="hljs-string">&#x27;ヨ&#x27;</span>], [<span class="hljs-string">&#x27;ら&#x27;</span>, <span class="hljs-string">&#x27;ラ&#x27;</span>], [<span class="hljs-string">&#x27;り&#x27;</span>, <span class="hljs-string">&#x27;リ&#x27;</span>],
-      [<span class="hljs-string">&#x27;る&#x27;</span>, <span class="hljs-string">&#x27;ル&#x27;</span>], [<span class="hljs-string">&#x27;れ&#x27;</span>, <span class="hljs-string">&#x27;レ&#x27;</span>], [<span class="hljs-string">&#x27;ろ&#x27;</span>, <span class="hljs-string">&#x27;ロ&#x27;</span>], [<span class="hljs-string">&#x27;わ&#x27;</span>, <span class="hljs-string">&#x27;ワ&#x27;</span>], [<span class="hljs-string">&#x27;ゐ&#x27;</span>, <span class="hljs-string">&#x27;ヰ&#x27;</span>], 
-      [<span class="hljs-string">&#x27;ゑ&#x27;</span>, <span class="hljs-string">&#x27;ヱ&#x27;</span>], [<span class="hljs-string">&#x27;を&#x27;</span>, <span class="hljs-string">&#x27;ヲ&#x27;</span>], [<span class="hljs-string">&#x27;ん&#x27;</span>, <span class="hljs-string">&#x27;ン&#x27;</span>], [<span class="hljs-string">&#x27;が&#x27;</span>, <span class="hljs-string">&#x27;ガ&#x27;</span>], [<span class="hljs-string">&#x27;ぎ&#x27;</span>, <span class="hljs-string">&#x27;ギ&#x27;</span>], 
-      [<span class="hljs-string">&#x27;ぐ&#x27;</span>, <span class="hljs-string">&#x27;グ&#x27;</span>], [<span class="hljs-string">&#x27;げ&#x27;</span>, <span class="hljs-string">&#x27;ゲ&#x27;</span>], [<span class="hljs-string">&#x27;ご&#x27;</span>, <span class="hljs-string">&#x27;ゴ&#x27;</span>], [<span class="hljs-string">&#x27;ざ&#x27;</span>, <span class="hljs-string">&#x27;ザ&#x27;</span>], [<span class="hljs-string">&#x27;じ&#x27;</span>, <span class="hljs-string">&#x27;ジ&#x27;</span>], 
-      [<span class="hljs-string">&#x27;ず&#x27;</span>, <span class="hljs-string">&#x27;ズ&#x27;</span>], [<span class="hljs-string">&#x27;ぜ&#x27;</span>, <span class="hljs-string">&#x27;ゼ&#x27;</span>], [<span class="hljs-string">&#x27;ぞ&#x27;</span>, <span class="hljs-string">&#x27;ゾ&#x27;</span>], [<span class="hljs-string">&#x27;だ&#x27;</span>, <span class="hljs-string">&#x27;ダ&#x27;</span>], [<span class="hljs-string">&#x27;ぢ&#x27;</span>, <span class="hljs-string">&#x27;ヂ&#x27;</span>], 
-      [<span class="hljs-string">&#x27;づ&#x27;</span>, <span class="hljs-string">&#x27;ヅ&#x27;</span>], [<span class="hljs-string">&#x27;で&#x27;</span>, <span class="hljs-string">&#x27;デ&#x27;</span>], [<span class="hljs-string">&#x27;ど&#x27;</span>, <span class="hljs-string">&#x27;ド&#x27;</span>], [<span class="hljs-string">&#x27;ば&#x27;</span>, <span class="hljs-string">&#x27;バ&#x27;</span>], [<span class="hljs-string">&#x27;び&#x27;</span>, <span class="hljs-string">&#x27;ビ&#x27;</span>], 
-      [<span class="hljs-string">&#x27;ぶ&#x27;</span>, <span class="hljs-string">&#x27;ブ&#x27;</span>], [<span class="hljs-string">&#x27;べ&#x27;</span>, <span class="hljs-string">&#x27;ベ&#x27;</span>], [<span class="hljs-string">&#x27;ぼ&#x27;</span>, <span class="hljs-string">&#x27;ボ&#x27;</span>], [<span class="hljs-string">&#x27;ゔ&#x27;</span>, <span class="hljs-string">&#x27;ゔ&#x27;</span>], [<span class="hljs-string">&#x27;ぱ&#x27;</span>, <span class="hljs-string">&#x27;パ&#x27;</span>], 
-      [<span class="hljs-string">&#x27;ぴ&#x27;</span>, <span class="hljs-string">&#x27;ピ&#x27;</span>], [<span class="hljs-string">&#x27;ぷ&#x27;</span>, <span class="hljs-string">&#x27;プ&#x27;</span>], [<span class="hljs-string">&#x27;ぺ&#x27;</span>, <span class="hljs-string">&#x27;ペ&#x27;</span>], [<span class="hljs-string">&#x27;ぽ&#x27;</span>, <span class="hljs-string">&#x27;ポ&#x27;</span>], [<span class="hljs-string">&#x27;ぁ&#x27;</span>, <span class="hljs-string">&#x27;ァ&#x27;</span>], 
-      [<span class="hljs-string">&#x27;ぃ&#x27;</span>, <span class="hljs-string">&#x27;ィ&#x27;</span>], [<span class="hljs-string">&#x27;ぅ&#x27;</span>, <span class="hljs-string">&#x27;ゥ&#x27;</span>], [<span class="hljs-string">&#x27;ぇ&#x27;</span>, <span class="hljs-string">&#x27;ェ&#x27;</span>], [<span class="hljs-string">&#x27;ぉ&#x27;</span>, <span class="hljs-string">&#x27;ォ&#x27;</span>], [<span class="hljs-string">&#x27;っ&#x27;</span>, <span class="hljs-string">&#x27;ッ&#x27;</span>],
-      [<span class="hljs-string">&#x27;ゃ&#x27;</span>, <span class="hljs-string">&#x27;ャ&#x27;</span>], [<span class="hljs-string">&#x27;ゅ&#x27;</span>, <span class="hljs-string">&#x27;ュ&#x27;</span>], [<span class="hljs-string">&#x27;ょ&#x27;</span>, <span class="hljs-string">&#x27;ョ&#x27;</span>], [<span class="hljs-string">&#x27;ゎ&#x27;</span>, <span class="hljs-string">&#x27;ヮ&#x27;</span>]
+      [<span class="hljs-string">&quot;あ&quot;</span>, <span class="hljs-string">&quot;ア&quot;</span>],
+      [<span class="hljs-string">&quot;い&quot;</span>, <span class="hljs-string">&quot;イ&quot;</span>],
+      [<span class="hljs-string">&quot;う&quot;</span>, <span class="hljs-string">&quot;ウ&quot;</span>],
+      [<span class="hljs-string">&quot;え&quot;</span>, <span class="hljs-string">&quot;エ&quot;</span>],
+      [<span class="hljs-string">&quot;お&quot;</span>, <span class="hljs-string">&quot;オ&quot;</span>],
+      [<span class="hljs-string">&quot;か&quot;</span>, <span class="hljs-string">&quot;カ&quot;</span>],
+      [<span class="hljs-string">&quot;き&quot;</span>, <span class="hljs-string">&quot;キ&quot;</span>],
+      [<span class="hljs-string">&quot;く&quot;</span>, <span class="hljs-string">&quot;ク&quot;</span>],
+      [<span class="hljs-string">&quot;け&quot;</span>, <span class="hljs-string">&quot;ケ&quot;</span>],
+      [<span class="hljs-string">&quot;こ&quot;</span>, <span class="hljs-string">&quot;コ&quot;</span>],
+      [<span class="hljs-string">&quot;さ&quot;</span>, <span class="hljs-string">&quot;サ&quot;</span>],
+      [<span class="hljs-string">&quot;し&quot;</span>, <span class="hljs-string">&quot;シ&quot;</span>],
+      [<span class="hljs-string">&quot;す&quot;</span>, <span class="hljs-string">&quot;ス&quot;</span>],
+      [<span class="hljs-string">&quot;せ&quot;</span>, <span class="hljs-string">&quot;セ&quot;</span>],
+      [<span class="hljs-string">&quot;そ&quot;</span>, <span class="hljs-string">&quot;ソ&quot;</span>],
+      [<span class="hljs-string">&quot;た&quot;</span>, <span class="hljs-string">&quot;タ&quot;</span>],
+      [<span class="hljs-string">&quot;ち&quot;</span>, <span class="hljs-string">&quot;チ&quot;</span>],
+      [<span class="hljs-string">&quot;つ&quot;</span>, <span class="hljs-string">&quot;ツ&quot;</span>],
+      [<span class="hljs-string">&quot;て&quot;</span>, <span class="hljs-string">&quot;テ&quot;</span>],
+      [<span class="hljs-string">&quot;と&quot;</span>, <span class="hljs-string">&quot;ト&quot;</span>],
+      [<span class="hljs-string">&quot;な&quot;</span>, <span class="hljs-string">&quot;ナ&quot;</span>],
+      [<span class="hljs-string">&quot;に&quot;</span>, <span class="hljs-string">&quot;ニ&quot;</span>],
+      [<span class="hljs-string">&quot;ぬ&quot;</span>, <span class="hljs-string">&quot;ヌ&quot;</span>],
+      [<span class="hljs-string">&quot;ね&quot;</span>, <span class="hljs-string">&quot;ネ&quot;</span>],
+      [<span class="hljs-string">&quot;の&quot;</span>, <span class="hljs-string">&quot;ノ&quot;</span>],
+      [<span class="hljs-string">&quot;は&quot;</span>, <span class="hljs-string">&quot;ハ&quot;</span>],
+      [<span class="hljs-string">&quot;ひ&quot;</span>, <span class="hljs-string">&quot;ヒ&quot;</span>],
+      [<span class="hljs-string">&quot;ふ&quot;</span>, <span class="hljs-string">&quot;フ&quot;</span>],
+      [<span class="hljs-string">&quot;へ&quot;</span>, <span class="hljs-string">&quot;ヘ&quot;</span>],
+      [<span class="hljs-string">&quot;ほ&quot;</span>, <span class="hljs-string">&quot;ホ&quot;</span>],
+      [<span class="hljs-string">&quot;ま&quot;</span>, <span class="hljs-string">&quot;マ&quot;</span>],
+      [<span class="hljs-string">&quot;み&quot;</span>, <span class="hljs-string">&quot;ミ&quot;</span>],
+      [<span class="hljs-string">&quot;む&quot;</span>, <span class="hljs-string">&quot;ム&quot;</span>],
+      [<span class="hljs-string">&quot;め&quot;</span>, <span class="hljs-string">&quot;メ&quot;</span>],
+      [<span class="hljs-string">&quot;も&quot;</span>, <span class="hljs-string">&quot;モ&quot;</span>],
+      [<span class="hljs-string">&quot;や&quot;</span>, <span class="hljs-string">&quot;ヤ&quot;</span>],
+      [<span class="hljs-string">&quot;ゆ&quot;</span>, <span class="hljs-string">&quot;ユ&quot;</span>],
+      [<span class="hljs-string">&quot;よ&quot;</span>, <span class="hljs-string">&quot;ヨ&quot;</span>],
+      [<span class="hljs-string">&quot;ら&quot;</span>, <span class="hljs-string">&quot;ラ&quot;</span>],
+      [<span class="hljs-string">&quot;り&quot;</span>, <span class="hljs-string">&quot;リ&quot;</span>],
+      [<span class="hljs-string">&quot;る&quot;</span>, <span class="hljs-string">&quot;ル&quot;</span>],
+      [<span class="hljs-string">&quot;れ&quot;</span>, <span class="hljs-string">&quot;レ&quot;</span>],
+      [<span class="hljs-string">&quot;ろ&quot;</span>, <span class="hljs-string">&quot;ロ&quot;</span>],
+      [<span class="hljs-string">&quot;わ&quot;</span>, <span class="hljs-string">&quot;ワ&quot;</span>],
+      [<span class="hljs-string">&quot;ゐ&quot;</span>, <span class="hljs-string">&quot;ヰ&quot;</span>],
+      [<span class="hljs-string">&quot;ゑ&quot;</span>, <span class="hljs-string">&quot;ヱ&quot;</span>],
+      [<span class="hljs-string">&quot;を&quot;</span>, <span class="hljs-string">&quot;ヲ&quot;</span>],
+      [<span class="hljs-string">&quot;ん&quot;</span>, <span class="hljs-string">&quot;ン&quot;</span>],
+      [<span class="hljs-string">&quot;が&quot;</span>, <span class="hljs-string">&quot;ガ&quot;</span>],
+      [<span class="hljs-string">&quot;ぎ&quot;</span>, <span class="hljs-string">&quot;ギ&quot;</span>],
+      [<span class="hljs-string">&quot;ぐ&quot;</span>, <span class="hljs-string">&quot;グ&quot;</span>],
+      [<span class="hljs-string">&quot;げ&quot;</span>, <span class="hljs-string">&quot;ゲ&quot;</span>],
+      [<span class="hljs-string">&quot;ご&quot;</span>, <span class="hljs-string">&quot;ゴ&quot;</span>],
+      [<span class="hljs-string">&quot;ざ&quot;</span>, <span class="hljs-string">&quot;ザ&quot;</span>],
+      [<span class="hljs-string">&quot;じ&quot;</span>, <span class="hljs-string">&quot;ジ&quot;</span>],
+      [<span class="hljs-string">&quot;ず&quot;</span>, <span class="hljs-string">&quot;ズ&quot;</span>],
+      [<span class="hljs-string">&quot;ぜ&quot;</span>, <span class="hljs-string">&quot;ゼ&quot;</span>],
+      [<span class="hljs-string">&quot;ぞ&quot;</span>, <span class="hljs-string">&quot;ゾ&quot;</span>],
+      [<span class="hljs-string">&quot;だ&quot;</span>, <span class="hljs-string">&quot;ダ&quot;</span>],
+      [<span class="hljs-string">&quot;ぢ&quot;</span>, <span class="hljs-string">&quot;ヂ&quot;</span>],
+      [<span class="hljs-string">&quot;づ&quot;</span>, <span class="hljs-string">&quot;ヅ&quot;</span>],
+      [<span class="hljs-string">&quot;で&quot;</span>, <span class="hljs-string">&quot;デ&quot;</span>],
+      [<span class="hljs-string">&quot;ど&quot;</span>, <span class="hljs-string">&quot;ド&quot;</span>],
+      [<span class="hljs-string">&quot;ば&quot;</span>, <span class="hljs-string">&quot;バ&quot;</span>],
+      [<span class="hljs-string">&quot;び&quot;</span>, <span class="hljs-string">&quot;ビ&quot;</span>],
+      [<span class="hljs-string">&quot;ぶ&quot;</span>, <span class="hljs-string">&quot;ブ&quot;</span>],
+      [<span class="hljs-string">&quot;べ&quot;</span>, <span class="hljs-string">&quot;ベ&quot;</span>],
+      [<span class="hljs-string">&quot;ぼ&quot;</span>, <span class="hljs-string">&quot;ボ&quot;</span>],
+      [<span class="hljs-string">&quot;ゔ&quot;</span>, <span class="hljs-string">&quot;ゔ&quot;</span>],
+      [<span class="hljs-string">&quot;ぱ&quot;</span>, <span class="hljs-string">&quot;パ&quot;</span>],
+      [<span class="hljs-string">&quot;ぴ&quot;</span>, <span class="hljs-string">&quot;ピ&quot;</span>],
+      [<span class="hljs-string">&quot;ぷ&quot;</span>, <span class="hljs-string">&quot;プ&quot;</span>],
+      [<span class="hljs-string">&quot;ぺ&quot;</span>, <span class="hljs-string">&quot;ペ&quot;</span>],
+      [<span class="hljs-string">&quot;ぽ&quot;</span>, <span class="hljs-string">&quot;ポ&quot;</span>],
+      [<span class="hljs-string">&quot;ぁ&quot;</span>, <span class="hljs-string">&quot;ァ&quot;</span>],
+      [<span class="hljs-string">&quot;ぃ&quot;</span>, <span class="hljs-string">&quot;ィ&quot;</span>],
+      [<span class="hljs-string">&quot;ぅ&quot;</span>, <span class="hljs-string">&quot;ゥ&quot;</span>],
+      [<span class="hljs-string">&quot;ぇ&quot;</span>, <span class="hljs-string">&quot;ェ&quot;</span>],
+      [<span class="hljs-string">&quot;ぉ&quot;</span>, <span class="hljs-string">&quot;ォ&quot;</span>],
+      [<span class="hljs-string">&quot;っ&quot;</span>, <span class="hljs-string">&quot;ッ&quot;</span>],
+      [<span class="hljs-string">&quot;ゃ&quot;</span>, <span class="hljs-string">&quot;ャ&quot;</span>],
+      [<span class="hljs-string">&quot;ゅ&quot;</span>, <span class="hljs-string">&quot;ュ&quot;</span>],
+      [<span class="hljs-string">&quot;ょ&quot;</span>, <span class="hljs-string">&quot;ョ&quot;</span>],
+      [<span class="hljs-string">&quot;ゎ&quot;</span>, <span class="hljs-string">&quot;ヮ&quot;</span>],
     ]);
 
     <span class="hljs-comment">// カタカナからひらがなへのMapを自動生成</span>
     <span class="hljs-variable language_">this</span>.<span class="hljs-property">kanaToHiraMap</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>(
-      <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">hiraToKanaMap</span>, <span class="hljs-function">(<span class="hljs-params">[h, k]</span>) =&gt;</span> [k, h])
+      <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">hiraToKanaMap</span>, <span class="hljs-function">(<span class="hljs-params">[h, k]</span>) =&gt;</span> [k, h]),
     );
   }
 
@@ -42,9 +109,9 @@
   <span class="hljs-title function_">toKatakana</span>(<span class="hljs-params">words</span>) {
     <span class="hljs-keyword">const</span> result = words
       .<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;&quot;</span>)
-      .<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">char</span> =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">hiraToKanaMap</span>.<span class="hljs-title function_">get</span>(char) || char)
+      .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">char</span>) =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">hiraToKanaMap</span>.<span class="hljs-title function_">get</span>(char) || char)
       .<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;&quot;</span>);
-    
+
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`🌾 Converted &quot;<span class="hljs-subst">${words}</span>&quot; to &quot;<span class="hljs-subst">${result}</span>&quot;.`</span>);
     <span class="hljs-keyword">return</span> result;
   }
@@ -56,9 +123,9 @@
   <span class="hljs-title function_">toHiragana</span>(<span class="hljs-params">words</span>) {
     <span class="hljs-keyword">const</span> result = words
       .<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;&quot;</span>)
-      .<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">char</span> =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">kanaToHiraMap</span>.<span class="hljs-title function_">get</span>(char) || char)
+      .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">char</span>) =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">kanaToHiraMap</span>.<span class="hljs-title function_">get</span>(char) || char)
       .<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;&quot;</span>);
-    
+
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`🌾 Converted &quot;<span class="hljs-subst">${words}</span>&quot; to &quot;<span class="hljs-subst">${result}</span>&quot;.`</span>);
     <span class="hljs-keyword">return</span> result;
   }

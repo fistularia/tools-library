@@ -2,7 +2,11 @@ import {
   assertEquals,
   assertNotEquals,
 } from "https://deno.land/std@0.224.0/assert/mod.ts";
-import { categoryLabels, categoryDefaultRank, type ArticleFrontmatter } from "./types.ts";
+import {
+  type ArticleFrontmatter,
+  categoryDefaultRank,
+  categoryLabels,
+} from "./types.ts";
 
 const ALL_CATEGORIES: ArticleFrontmatter["category"][] = [
   "spreadsheet",
@@ -16,7 +20,11 @@ const ALL_CATEGORIES: ArticleFrontmatter["category"][] = [
 Deno.test("categoryLabels - 全てのカテゴリにラベルが定義されている", () => {
   for (const category of ALL_CATEGORIES) {
     const label = categoryLabels[category];
-    assertNotEquals(label, undefined, `カテゴリ "${category}" にラベルが定義されていません`);
+    assertNotEquals(
+      label,
+      undefined,
+      `カテゴリ "${category}" にラベルが定義されていません`,
+    );
     assertNotEquals(label, "", `カテゴリ "${category}" のラベルが空文字です`);
   }
 });

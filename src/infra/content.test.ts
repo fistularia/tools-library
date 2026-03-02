@@ -64,7 +64,10 @@ Deno.test("getArticle - 正常系: Frontmatterありのマークダウンを正�
     assertEquals(article.frontmatter.title, "テスト記事");
     assertEquals(article.frontmatter.description, "テスト説明");
     assertEquals(article.frontmatter.category, "spreadsheet");
-    assertEquals(article.frontmatter.downloadUrl, "https://example.com/download");
+    assertEquals(
+      article.frontmatter.downloadUrl,
+      "https://example.com/download",
+    );
     assertEquals(article.frontmatter.date, "2024-01-15");
     assertEquals(article.frontmatter.tags, ["テスト", "サンプル"]);
     assertEquals(article.content.includes("<h1>テスト見出し</h1>"), true);
@@ -117,7 +120,8 @@ Deno.test("getArticles - 正常系: 記事一覧をrank昇順で取得できる"
   const readTextFileStub = stub(
     Deno,
     "readTextFile",
-    (path: string | URL) => Promise.resolve(fileContents[path.toString()] || ""),
+    (path: string | URL) =>
+      Promise.resolve(fileContents[path.toString()] || ""),
   );
 
   try {
@@ -230,14 +234,17 @@ Deno.test("getArticlesByCategory - 正常系: カテゴリでフィルタリン�
   const readTextFileStub = stub(
     Deno,
     "readTextFile",
-    (path: string | URL) => Promise.resolve(fileContents[path.toString()] || ""),
+    (path: string | URL) =>
+      Promise.resolve(fileContents[path.toString()] || ""),
   );
 
   try {
     const spreadsheetArticles = await getArticlesByCategory("spreadsheet");
     assertEquals(spreadsheetArticles.length, 2);
     assertEquals(
-      spreadsheetArticles.every((a) => a.frontmatter.category === "spreadsheet"),
+      spreadsheetArticles.every((a) =>
+        a.frontmatter.category === "spreadsheet"
+      ),
       true,
     );
 

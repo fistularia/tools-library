@@ -3,7 +3,12 @@ import { Marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
 import { parse as parseYaml } from "@std/yaml";
-import type { Article, ArticleFrontmatter, Link, Snippet } from "../domain/types.ts";
+import type {
+  Article,
+  ArticleFrontmatter,
+  Link,
+  Snippet,
+} from "../domain/types.ts";
 import { categoryDefaultRank } from "../domain/types.ts";
 
 const marked = new Marked(
@@ -13,7 +18,7 @@ const marked = new Marked(
       const language = hljs.getLanguage(lang) ? lang : "plaintext";
       return hljs.highlight(code, { language }).value;
     },
-  })
+  }),
 );
 
 const CONTENT_DIR = "./content/articles";
@@ -32,8 +37,10 @@ export async function getArticles(): Promise<Article[]> {
   }
 
   return articles.sort((a, b) => {
-    const rankA = a.frontmatter.rank ?? categoryDefaultRank[a.frontmatter.category];
-    const rankB = b.frontmatter.rank ?? categoryDefaultRank[b.frontmatter.category];
+    const rankA = a.frontmatter.rank ??
+      categoryDefaultRank[a.frontmatter.category];
+    const rankB = b.frontmatter.rank ??
+      categoryDefaultRank[b.frontmatter.category];
     return rankA - rankB;
   });
 }
