@@ -1,0 +1,6 @@
+<FilesMatch "^private">
+  AuthType Basic
+  AuthName "Private"
+  AuthUserFile /home/aquaimpala4/www/tools-library/.htpasswd
+  Require valid-user
+</FilesMatch>
