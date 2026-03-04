@@ -6,6 +6,7 @@ downloadUrl: "https://docs.google.com/spreadsheets/d/1yB9FhNTnyrXpi6LSODmhaeIt6V
 date: "2026-03-02"
 tags: ["データベース"]
 rank: 10009
+status: public
 ---
 
 ## 概要

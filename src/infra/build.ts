@@ -1,8 +1,9 @@
 import { render } from "preact-render-to-string";
 import * as sass from "npm:sass@1.69.7";
 import { getArticles, getLinks, getSnippets } from "./content.ts";
-import type { Link, Snippet } from "../domain/types.ts";
-import { TopPage } from "../ui/pages/top/top.tsx";
+import type { Article, Link, Snippet } from "../domain/types.ts";
+import { IndexPage } from "../ui/pages/top/IndexPage.tsx";
+import { PrivatePage } from "../ui/pages/top/PrivatePage.tsx";
 import { ArticlePage } from "../ui/pages/articles/article.tsx";
 
 const DIST_DIR = "./dist";
@@ -42,11 +43,18 @@ function stripHtmlTags(html: string): string {
   return html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 }
 
+function isPublicArticle(article: Article): boolean {
+  return article.frontmatter.status === "public";
+}
+
+function isPublic(item: { status?: string }): boolean {
+  return item.status === "public";
+}
+
 async function buildSearchData(
   articles: Awaited<ReturnType<typeof getArticles>>,
+  destPath: string,
 ) {
-  console.log("Building search data...");
-
   const searchData: SearchDataItem[] = articles.map((article) => {
     const { slug, frontmatter, content } = article;
     const { title, description, category, tags } = frontmatter;
@@ -65,18 +73,17 @@ async function buildSearchData(
   });
 
   const jsonString = JSON.stringify(searchData);
-  const filePath = `${DIST_DIR}/search-data.json`;
-  await Deno.writeTextFile(filePath, jsonString);
+  await Deno.writeTextFile(destPath, jsonString);
 
   const fileSizeBytes = new TextEncoder().encode(jsonString).length;
   const fileSizeKB = (fileSizeBytes / 1024).toFixed(2);
   const fileSizeMB = (fileSizeBytes / 1024 / 1024).toFixed(3);
   console.log(
-    `  Created: dist/search-data.json (${fileSizeKB} KB / ${fileSizeMB} MB)`,
+    `  Created: ${destPath} (${fileSizeKB} KB / ${fileSizeMB} MB)`,
   );
 }
 
-async function buildSnippetsData(snippets: Snippet[]) {
+async function buildSnippetsData(snippets: Snippet[], destPath: string) {
   const data = snippets.map((
     { title, description, content, category, tags },
   ) => ({
@@ -86,14 +93,11 @@ async function buildSnippetsData(snippets: Snippet[]) {
     content,
     category,
   }));
-  await Deno.writeTextFile(
-    `${DIST_DIR}/snippets-data.json`,
-    JSON.stringify(data),
-  );
-  console.log("  Created: dist/snippets-data.json");
+  await Deno.writeTextFile(destPath, JSON.stringify(data));
+  console.log(`  Created: ${destPath}`);
 }
 
-async function buildLinksData(links: Link[]) {
+async function buildLinksData(links: Link[], destPath: string) {
   const data = links.map(({ url, title, description, category }) => ({
     searchText: [title, description, category].join("_"),
     url,
@@ -101,9 +105,10 @@ async function buildLinksData(links: Link[]) {
     description,
     category,
   }));
-  await Deno.writeTextFile(`${DIST_DIR}/links-data.json`, JSON.stringify(data));
-  console.log("  Created: dist/links-data.json");
+  await Deno.writeTextFile(destPath, JSON.stringify(data));
+  console.log(`  Created: ${destPath}`);
 }
+
 
 async function buildPages() {
   console.log("Building pages...");
@@ -112,25 +117,54 @@ async function buildPages() {
   const isCI = Deno.env.get("GITHUB_ACTIONS") === "true";
   const baseUrl = isCI ? "https://tools-library.mints.ne.jp/" : "/";
 
-  const articles = await getArticles();
-  const links = await getLinks();
-  const snippets = await getSnippets();
+  const allArticles = await getArticles();
+  const allLinks = await getLinks();
+  const allSnippets = await getSnippets();
 
-  // Build search data
-  await buildSearchData(articles);
-  await buildLinksData(links);
-  await buildSnippetsData(snippets);
+  const publicArticles = allArticles.filter(isPublicArticle);
+  const publicLinks = allLinks.filter(isPublic);
+  const publicSnippets = allSnippets.filter(isPublic);
 
-  // Build top page
+  // Build public search data
+  await buildSearchData(publicArticles, `${DIST_DIR}/search-data.json`);
+  await buildLinksData(publicLinks, `${DIST_DIR}/links-data.json`);
+  await buildSnippetsData(publicSnippets, `${DIST_DIR}/snippets-data.json`);
+
+  // Build public top page
   const topPageHtml = "<!DOCTYPE html>" +
-    render(TopPage({ baseUrl, articles, links, snippets }));
+    render(
+      IndexPage({
+        baseUrl,
+        articles: publicArticles,
+        links: publicLinks,
+        snippets: publicSnippets,
+      }),
+    );
   await Deno.writeTextFile(`${DIST_DIR}/index.html`, topPageHtml);
   console.log("  Created: dist/index.html");
 
-  // Build article pages
+  // Build private search data (all content, prefixed filenames)
+  await buildSearchData(allArticles, `${DIST_DIR}/private-search-data.json`);
+  await buildLinksData(allLinks, `${DIST_DIR}/private-links-data.json`);
+  await buildSnippetsData(allSnippets, `${DIST_DIR}/private-snippets-data.json`);
+
+  // Build private top page (all content)
+  const privatePageHtml = "<!DOCTYPE html>" +
+    render(
+      PrivatePage({
+        baseUrl,
+        articles: allArticles,
+        links: allLinks,
+        snippets: allSnippets,
+      }),
+    );
+  await Deno.writeTextFile(`${DIST_DIR}/private.html`, privatePageHtml);
+  console.log("  Created: dist/private.html");
+
+  // Build article pages (all articles)
   await ensureDir(`${DIST_DIR}/articles`);
 
-  for (const article of articles) {
+  for (const article of allArticles) {
     const articleHtml = "<!DOCTYPE html>" +
       render(ArticlePage({ baseUrl, article }));
     await Deno.writeTextFile(

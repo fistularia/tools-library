@@ -53,9 +53,13 @@ export async function getArticle(slug: string): Promise<Article | null> {
     const { data, content } = matter(fileContent);
     const htmlContent = await marked.parse(content);
 
+    const frontmatter = data as ArticleFrontmatter;
     return {
       slug,
-      frontmatter: data as ArticleFrontmatter,
+      frontmatter: {
+        ...frontmatter,
+        status: frontmatter.status ?? "private",
+      },
       content: htmlContent,
     };
   } catch {
@@ -65,12 +69,17 @@ export async function getArticle(slug: string): Promise<Article | null> {
 
 export async function getLinks(): Promise<Link[]> {
   const fileContent = await Deno.readTextFile("./content/links.yaml");
-  return parseYaml(fileContent) as Link[];
+  const links = parseYaml(fileContent) as Link[];
+  return links.map((link) => ({ ...link, status: link.status ?? "private" }));
 }
 
 export async function getSnippets(): Promise<Snippet[]> {
   const fileContent = await Deno.readTextFile("./content/snippets.yaml");
-  return parseYaml(fileContent) as Snippet[];
+  const snippets = parseYaml(fileContent) as Snippet[];
+  return snippets.map((snippet) => ({
+    ...snippet,
+    status: snippet.status ?? "private",
+  }));
 }
 
 export async function getArticlesByCategory(

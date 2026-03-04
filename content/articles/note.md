@@ -6,6 +6,7 @@ downloadUrl:
 date: "2026-02-05"
 tags: ["メモ"]
 rank: 60010
+status: private
 ---
 
 ## 追加機能

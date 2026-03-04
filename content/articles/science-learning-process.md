@@ -6,6 +6,7 @@ downloadUrl: "https://docs.google.com/presentation/d/1vlXO_HsC0fx9bCu2lj5vAEY4ss
 date: "2026-03-02"
 tags: ["理科"]
 rank: 30011
+status: public
 ---
 
 ## 概要

@@ -6,6 +6,7 @@ export interface ArticleFrontmatter {
   date: string;
   tags: string[];
   rank?: number;
+  status?: "public" | "private";
 }
 
 export const categoryDefaultRank: Record<
@@ -30,6 +31,7 @@ export interface Link {
   title: string;
   description: string;
   category: string;
+  status?: "public" | "private";
 }
 
 export const linkCategoryLabels: Record<string, string> = {
@@ -46,6 +48,7 @@ export interface Snippet {
   content: string;
   category: string;
   tags: string[];
+  status?: "public" | "private";
 }
 
 export const categoryLabels: Record<ArticleFrontmatter["category"], string> = {

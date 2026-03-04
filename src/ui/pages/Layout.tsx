@@ -5,9 +5,10 @@ interface LayoutProps {
   title: string;
   baseUrl: string;
   children: ComponentChildren;
+  dataBasePath?: string;
 }
 
-export function Layout({ title, baseUrl, children }: LayoutProps) {
+export function Layout({ title, baseUrl, children, dataBasePath }: LayoutProps) {
   return (
     <html lang="ja">
       <head>
@@ -21,6 +22,13 @@ export function Layout({ title, baseUrl, children }: LayoutProps) {
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
         />
+        {dataBasePath !== undefined && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.__DATA_BASE = '${dataBasePath}';`,
+            }}
+          />
+        )}
       </head>
 
       <body>

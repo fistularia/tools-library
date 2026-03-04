@@ -6,6 +6,7 @@ downloadUrl: "https://docs.google.com/spreadsheets/d/13CeEm1j3K7najVixRYAlyUkBUR
 date: "2026-02-04"
 tags: ["一括処理"]
 rank: 10020
+status: public
 ---
 
 ## 概要

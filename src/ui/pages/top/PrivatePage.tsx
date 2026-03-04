@@ -2,6 +2,7 @@ import { Layout } from "../Layout.tsx";
 import { ArticleCard } from "../../components/ArticleCard.tsx";
 import { LinkCard } from "../../components/LinkCard.tsx";
 import { SnippetCard } from "../../components/SnippetCard.tsx";
+import { SearchBox } from "../../components/SearchBox.tsx";
 import type {
   Article,
   ArticleFrontmatter,
@@ -10,11 +11,11 @@ import type {
 } from "../../../domain/types.ts";
 import { categoryLabels } from "../../../domain/types.ts";
 
-interface TopPageProps {
+interface PrivatePageProps {
   baseUrl: string;
   articles: Article[];
-  links: Link[];
-  snippets: Snippet[];
+  links?: Link[];
+  snippets?: Snippet[];
 }
 
 type Category = ArticleFrontmatter["category"];
@@ -35,25 +36,20 @@ const categoryIcons: Record<Category, string> = {
   hack: "img/hack.svg",
 };
 
-export function TopPage({ baseUrl, articles, links, snippets }: TopPageProps) {
+export function PrivatePage(
+  { baseUrl, articles, links = [], snippets = [] }: PrivatePageProps,
+) {
   const articlesByCategory = (category: Category) =>
     articles.filter((article) => article.frontmatter.category === category);
 
   return (
-    <Layout title="トップページ" baseUrl={baseUrl}>
+    <Layout title="トップページ（管理人）" baseUrl={baseUrl} dataBasePath="private-">
       <div class="top-page">
         <section class="hero">
           <h1 class="hero__title">🧪 業務効率化ツール</h1>
         </section>
 
-        <div class="search-box">
-          <input
-            type="text"
-            class="search-box__input"
-            placeholder="検索..."
-            id="search-input"
-          />
-        </div>
+        <SearchBox />
 
         <div class="tabs-wrapper">
           <div class="tabs">
@@ -68,9 +64,7 @@ export function TopPage({ baseUrl, articles, links, snippets }: TopPageProps) {
               >
                 <span
                   class="tabs__icon"
-                  style={`--icon-url: url(${baseUrl}${
-                    categoryIcons[category]
-                  })`}
+                  style={`--icon-url: url(${baseUrl}${categoryIcons[category]})`}
                 />
                 {categoryLabels[category]}
               </button>
@@ -106,11 +100,9 @@ export function TopPage({ baseUrl, articles, links, snippets }: TopPageProps) {
 
         {snippets.length > 0 && (
           <section class="snippets-section">
-            <h2 class="snippets-section__title">🧩 スニペット
-              <span>
-              カードをクリックでコピー
-              </span>
-              </h2>
+            <h2 class="snippets-section__title">
+              🧩 スニペット<span>カードをクリックでコピー</span>
+            </h2>
             <div class="snippets-section__grid">
               {snippets.map((snippet, i) => (
                 <SnippetCard key={i} snippet={snippet} />

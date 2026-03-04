@@ -173,14 +173,15 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // 検索データを並列取得
+  var dataPrefix = (window.__DATA_BASE || "");
   Promise.all([
-    fetch("/search-data.json").then(function (r) {
+    fetch("/" + dataPrefix + "search-data.json").then(function (r) {
       return r.json();
     }),
-    fetch("/links-data.json").then(function (r) {
+    fetch("/" + dataPrefix + "links-data.json").then(function (r) {
       return r.json();
     }),
-    fetch("/snippets-data.json").then(function (r) {
+    fetch("/" + dataPrefix + "snippets-data.json").then(function (r) {
       return r.json();
     }),
   ]).then(function (results) {

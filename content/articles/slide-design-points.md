@@ -6,6 +6,7 @@ downloadUrl:
 date: "2026-02-10"
 tags: ["デザイン"]
 rank: 30010
+status: public
 ---
 
 ## 概要

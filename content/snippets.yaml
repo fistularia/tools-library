@@ -3,24 +3,28 @@
   content: "=TODAY()"
   category: "spreadsheet"
   tags: ["日付", "関数"]
+  status: private
 
 - title: "COUNTIF関数"
   description: "条件に合うセルの数を数える"
   content: '=COUNTIF(A:A,"条件")'
   category: "spreadsheet"
   tags: ["集計", "関数"]
+  status: private
 
 - title: "IFERROR関数"
   description: "エラーの場合に代替値を返す"
   content: '=IFERROR(数式,"")'
   category: "spreadsheet"
   tags: ["エラー処理", "関数"]
+  status: private
 
 - title: "VLOOKUP関数"
   description: "縦方向に値を検索して対応する値を返す"
   content: "=VLOOKUP(検索値,範囲,列番号,FALSE)"
   category: "spreadsheet"
   tags: ["検索", "関数"]
+  status: private
 
 - title: "GASスクリプト実行トリガー設定"
   description: "スクリプトを毎日決まった時刻に自動実行する"
@@ -34,6 +38,7 @@
     }
   category: "gas"
   tags: ["トリガー", "自動化"]
+  status: private
 
 - title: "GASスプレッドシート取得"
   description: "アクティブなスプレッドシートとシートを取得する"
@@ -42,3 +47,4 @@
     const sheet = ss.getActiveSheet();
   category: "gas"
   tags: ["スプレッドシート", "基本"]
+  status: private
