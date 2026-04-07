@@ -6,7 +6,7 @@ downloadUrl: "https://docs.google.com/spreadsheets/d/example1/copy"
 date: "2026-01-23"
 tags: ["勤怠", "管理", "時間計算"]
 rank: 10001
-status: public
+status: plivate
 ---
 
 ## 概要

@@ -1,3 +1,5 @@
+# Private
+
 - url: "https://developers.google.com/apps-script"
   title: "Google Apps Script"
   description: "GASのドキュメント"
@@ -8,6 +10,8 @@
   description: "漢字情報のAPI"
   category: "漢字"
   status: private
+
+# Public
 
 - url: "https://www.mext.go.jp/a_menu/shotou/new-cs/senseiouen/1304651.htm"
   title: "小学校理科の観察，実験の手引き"
@@ -21,7 +25,7 @@
   category: "漢字"
   status: public
 
-- url: "https://shonagon.ninjal.ac.jp/"
+- url: "https://shonagon.ninjal.ac.jp/search_form"
   title: "少納言"
   description: "現代日本語書き言葉均衡コーパス"
   category: "言葉"
