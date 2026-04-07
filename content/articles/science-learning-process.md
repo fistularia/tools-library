@@ -13,3 +13,9 @@ status: public
 理科の問題解決の過程を1枚のプリントにまとめたものです。
 ノートの表紙裏などに貼るなどして使います。
 
+
+## 中学年版
+![理科の学習の進め方](../img/science-learning-process-1.png)
+
+## 高学年版
+![理科の学習の進め方](../img/science-learning-process-2.png)

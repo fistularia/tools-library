@@ -6,7 +6,7 @@ downloadUrl: "https://docs.google.com/spreadsheets/d/1AgpM6bvGCAg12es7eFecZbWc6A
 date: "2026-02-04"
 tags: ["ライブラリ"]
 rank: 40010
-status: private
+status: public
 ---
 
 ## 概要
