@@ -24,7 +24,7 @@ const tabCategories: Category[] = [
   "spreadsheet",
   // "docs",
   "slides",
-  // "gas",
+  "gas",
   // "hack",
 ];
 
