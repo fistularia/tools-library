@@ -25,7 +25,7 @@ const tabCategories: Category[] = [
   // "docs",
   "slides",
   "gas",
-  // "hack",
+  "hack",
 ];
 
 const categoryIcons: Record<Category, string> = {
