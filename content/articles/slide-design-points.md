@@ -2,7 +2,7 @@
 title: "スライドづくりのポイント"
 description: "見やすいスライドを作る上でのポイントをまとめたスライドです。"
 category: "slides"
-downloadUrl:
+downloadUrl: "https://docs.google.com/presentation/d/1aEhuFV-4NzEkUj3tR1K5kZFfU2ufs0xPXkQXmwcGgsE/template/preview"
 date: "2026-02-10"
 tags: ["デザイン"]
 rank: 30010
